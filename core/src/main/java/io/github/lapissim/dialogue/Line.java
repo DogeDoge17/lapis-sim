@@ -15,9 +15,14 @@ public class Line
 
     public int destination;
 
-    public int flipDirection;
-    
+    public Direction flipDirection;
 
+
+}
+
+enum Direction{
+    Left,
+    Right
 }
 
 

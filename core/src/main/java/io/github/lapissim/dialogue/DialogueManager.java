@@ -10,6 +10,7 @@ import java.util.List;
 public class DialogueManager
 {
     public static String[] rawLines;
+    public static Line[] lines;
     public static String rawDialogue;
     public static int linePointer;
 
@@ -21,7 +22,7 @@ public class DialogueManager
             rawLines = rawDialogue.split("\n");
             for(int i = 0; i < rawLines.length; i++)
             {
-                
+
             }
 
 

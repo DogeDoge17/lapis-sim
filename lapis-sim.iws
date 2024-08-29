@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="" />
+    <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/Line.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lapis-sim.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,9 +58,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,6 +79,7 @@
       <profile-state />
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -174,6 +184,17 @@
       <updated>1724947155830</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
