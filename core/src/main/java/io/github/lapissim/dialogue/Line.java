@@ -1,28 +1,32 @@
 package io.github.lapissim.dialogue;
 
-import io.github.lapissim.engine.math.Vector2;
+import com.badlogic.gdx.math.Vector2;
+
+import java.util.Optional;
 
 public class Line
 {
     public LineType lineType;
     public int position;
+    public boolean blockade;
+    public String speakerId;
 
     public Vector2 vector;
 
-    public String charaName;
     public String contents;
     public String portrait;
 
-    public int destination;
+    public String destination;
 
-    public Direction flipDirection;
 
+    public int flipDirection;
+
+    public String labelName;
+
+    public String[] choices;
+    public String[] destinations;
+
+    public String value;
+    public String flag;
 
 }
-
-enum Direction{
-    Left,
-    Right
-}
-
-

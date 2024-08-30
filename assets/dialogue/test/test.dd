@@ -1,3 +1,7 @@
 START:
-    DIA "Hi mom!" "Steven" "steven-happy"
-    END
+  DIA "COOKIE CAT!! HE LEFT HIS FAMILY BEHIND!! "Steven" "happy"
+  CHOICE "fella" "feller" "thatfailedtobecharming" "touch" START OTHER MARVIN FELLAWORDS
+  END
+
+OTHER:
+    DIA "woaw! you found the secret." "Steven" "happy"

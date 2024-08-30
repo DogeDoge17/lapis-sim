@@ -1,1 +1,2 @@
+dialogue/test/test.dd
 libgdx.png
