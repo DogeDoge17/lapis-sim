@@ -2,6 +2,7 @@ package io.github.lapissim.engine.render;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -16,6 +17,14 @@ public class TextRenderer
             Rectangle rec = fn.textureMap.get(c);
             fn.atlas.setRegion((int)rec.x,(int)rec.y,(int)rec.width, (int)rec.height);
             lineOffset += rec.width - rec.x;
+
+            /*batch.end();
+            ShapeRenderer shape = new ShapeRenderer();
+            shape.setAutoShapeType(true);
+            shape.begin();
+            shape.box(rec.x,rec.y,0,rec.width,rec.height,1);
+            shape.end();
+            batch.begin();*/
             batch.draw(fn.atlas, lineOffset,y);
         }
         batch.setColor(1,1,1,1);

@@ -77,7 +77,7 @@ public class FunlandArcade extends Scene {
     @Override
     public void draw(SpriteBatch batch){
         super.draw(batch);
-        TextRenderer.drawString(batch, sans, "Aeek", 0,100, 126, new Color(1,1,1,1));
+        TextRenderer.drawString(batch, sans, "h", 0,100, 126, new Color(1,1,1,1));
 
         //BitmapFont fnt = new BitmapFont();
         //fnt.getData().setScale(126,126);

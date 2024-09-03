@@ -5,42 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/backdrops/beach-city/funland-arcade-inside.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backdrops/beach-city/funland-arcade.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backdrops/beach-city/funland-gate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/bored-cracked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/bored.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/happy-cracked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/happy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/neutral-cracked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/neutral.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/tired-cracked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/lapis/tired.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/steven/happy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/speakers/steven/natural.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Prop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Scene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Tuple.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/save/Flags.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/BigDonut1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/FunlandArcade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/psd/lapis.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/dialogue/test/test.dd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/dialogue/test/test.dd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/LineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/LineType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lapis-sim.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/io/github/lapissim/lwjgl3/Lwjgl3Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/src/main/java/io/github/lapissim/lwjgl3/Lwjgl3Launcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +169,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ti2ge\source\java\lapis-sim\core\src\main\java\io\github\lapissim\dialogue" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.github.lapissim.engine.render" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.lapis-sim [run]">

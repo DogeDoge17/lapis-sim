@@ -29,14 +29,15 @@ public class Font {
         atlas = new TextureRegion(new Texture("font/" + internalPath + ".png"));
         FileHandle hi = Gdx.files.internal("font/" + internalPath + ".fntdat");
         String rawData = hi.readString();
-        String[] associatedData = rawData.split("\r\n");
+        String[] associatedData = rawData.split("\n");
 
         for(int i = 0; i < internalString.length(); i++){
             if(i >= associatedData.length)
                 continue;
             char c = internalString.charAt(i);
+            System.out.println(i);
             String[] lineVars = associatedData[i].split(" ");
-            textureMap.putIfAbsent(c, new Rectangle(Float.parseFloat(lineVars[0]),Float.parseFloat(lineVars[1]),Float.parseFloat(lineVars[2]),Float.parseFloat(lineVars[3])));
+            textureMap.putIfAbsent(c, new Rectangle(Float.parseFloat(lineVars[0].replace("\n", "")),Float.parseFloat(lineVars[1].replace("\n", "")),Float.parseFloat(lineVars[2].replace("\n", "")),Float.parseFloat(lineVars[3].replace("\n", ""))));
         }
     }
     @Override
