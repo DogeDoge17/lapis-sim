@@ -24,7 +24,7 @@ public class DialogueManager
     public static HashMap<String, Integer> labels;
 
     private static ArrayList<Integer> stack;
-    private static boolean compareValue;
+    private static int compareValue;
     private static boolean retaining = false;
 
     public static void beginDialogue(String path)
@@ -73,12 +73,8 @@ public class DialogueManager
                 case "detain":
                     line.lineType = LineType.DETAIN;
                     break;
-                    //FINISH
                 case "lerp":
                     line.lineType = LineType.LERP;
-                    break;
-                case "slerp":
-                    line.lineType = LineType.SLERP;
                     break;
                 case "linear":
                     line.lineType = LineType.LINEAR;
@@ -150,7 +146,7 @@ public class DialogueManager
 
                     line.lineType = LineType.FLAG;
                     line.flag = lineArgs[1];
-                    line.flag = lineArgs[2];
+                    line.value = lineArgs[2];
                     break;
                 case "name":
                     if(lineArgs.length < 3) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
@@ -159,11 +155,46 @@ public class DialogueManager
                     line.speakerId = lineArgs[1];
                     line.value = lineArgs[2];
                     break;
+                case "cmp":
+                    if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.CMP;
+                    line.flag = lineArgs[1];
+                    line.value = lineArgs[2];
+                    break;
+                case "je":
+                    if(lineArgs.length < 1) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.JE;
+                    line.destination = lineArgs[1];
+                    break;
+                case "jne":
+                    if(lineArgs.length < 1) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.JNE;
+                    line.destination = lineArgs[1];
+                    break;
+                case "jge":
+                    if(lineArgs.length < 1) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.JGE;
+                    line.destination = lineArgs[1];
+                    break;
+                case"jle":
+                    if(lineArgs.length < 1) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.JLE;
+                    line.destination = lineArgs[1];
+                    break;
+                case "call":
+                    line.lineType = LineType.CALL;
+                    line.value = lineArgs[1];
+                    break;
                 default:
                     if(lineArgs[0].contains(":")) {
                         line.lineType = LineType.LABEL;
                         String lblName = lineArgs[0].replace(":","");
-                        line.labelName = "lblName";
+                        line.labelName = lblName;
                         labels.put(lblName, i);
                         continue;
                     }
@@ -172,6 +203,11 @@ public class DialogueManager
             }
             lines[i] = line;
         }
+        linePointer = -1;
+    }
+
+    public static void NextDialogue(){
+
     }
 
     public static Line getLine(){

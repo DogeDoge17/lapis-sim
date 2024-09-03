@@ -24,9 +24,11 @@ public enum LineType
      * Takes in no arguments. Makes time scaling persist across transforms.
      */
     RETAIN,
+    /**
+     * Takes in no arguments. Disables the effects of retain.
+     */
     DETAIN,
     LERP,
-    SLERP,
     LINEAR,
     /**
      * Takes in three arguments. SpeakerID, X-Scale, Y-Scale. Sets the scale based off of 1 the sprite. Can be affected by time scaling.
@@ -57,6 +59,10 @@ public enum LineType
      */
     END,
     /**
+     * Takes in two arguments. ObjectID, visibility. 1 for showing 0 for hidden.
+     */
+    VISIBLE,
+    /**
      * Takes in two arguments: Flag name, Flag Value. Sets the global flag to have the desired value.
      */
     FLAG,
@@ -76,4 +82,16 @@ public enum LineType
      * Takes in one argument: destination. Jumps if the comparison is NOT equal.
      */
     JNE,
+    /**
+     * Takes in one argument: destination. Jumps if the comparison is greater than or equal to.
+     */
+    JGE,
+    /**
+     * Takes in one argument: destination. Jumps if the comparison is less than or equal to.
+     */
+    JLE,
+    /**
+     * Takes in no arguments: function. Calls a specified function in the supplied function list for greater control over the event.
+     */
+    CALL
 }

@@ -1,7 +1,11 @@
 START:
-  DIA "COOKIE CAT!! HE LEFT HIS FAMILY BEHIND!! "Steven" "happy"
+
+  DIA "Welcome to the lapis dating simulator!" "Steven" "happy"
+  DIA "Fuck my chud life" "Lapis" "neutral"
+  DIA "what" "Steven" "neutral"
   CHOICE "fella" "feller" "thatfailedtobecharming" "touch" START OTHER MARVIN FELLAWORDS
   END
 
 OTHER:
     DIA "woaw! you found the secret." "Steven" "happy"
+    RET

@@ -1,2 +1,18 @@
+backdrops/beach-city/funland-arcade-inside.png
+backdrops/beach-city/funland-arcade.png
+backdrops/beach-city/funland-gate.png
 dialogue/test/test.dd
+font/Comic Sans MS.fntdat
+font/Comic Sans MS.json
+font/Comic Sans MS.png
 libgdx.png
+speakers/lapis/bored-cracked.png
+speakers/lapis/bored.png
+speakers/lapis/happy-cracked.png
+speakers/lapis/happy.png
+speakers/lapis/neutral-cracked.png
+speakers/lapis/neutral.png
+speakers/lapis/tired-cracked.png
+speakers/lapis/tired.png
+speakers/steven/happy.png
+speakers/steven/natural.png
