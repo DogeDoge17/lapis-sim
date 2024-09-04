@@ -11,21 +11,26 @@ public class TextRenderer
     public static void drawString(SpriteBatch batch, Font fn, String inp, float x, float y, float fontSize, Color colour)
     {
         batch.setColor(colour);
-        float lineOffset = x;
+        float charOffset = x;
+        float lineOffset = 0;
+        Rectangle prevRec = new Rectangle();
+        float fontPercent = fontSize/fn.defaultSize;
+
         for(int i = 0; i < inp.length(); i++){
             char c = inp.charAt(i);
+            if (c == '\n' || c == '\r') {
+                charOffset = 0;
+                prevRec = new Rectangle();
+                lineOffset -= fn.lineSeparation;
+                continue;
+            }
             Rectangle rec = fn.textureMap.get(c);
             fn.atlas.setRegion((int)rec.x,(int)rec.y,(int)rec.width, (int)rec.height);
-            lineOffset += rec.width - rec.x;
+            charOffset += (prevRec.width - prevRec.x) * fontPercent;
 
-            /*batch.end();
-            ShapeRenderer shape = new ShapeRenderer();
-            shape.setAutoShapeType(true);
-            shape.begin();
-            shape.box(rec.x,rec.y,0,rec.width,rec.height,1);
-            shape.end();
-            batch.begin();*/
-            batch.draw(fn.atlas, lineOffset,y);
+            //(TextureRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation)
+            batch.draw(fn.atlas, charOffset, y+lineOffset, 0,0, fn.atlas.getRegionWidth(), fn.atlas.getRegionHeight(), fontPercent, fontPercent, 0);
+            prevRec = rec;
         }
         batch.setColor(1,1,1,1);
     }

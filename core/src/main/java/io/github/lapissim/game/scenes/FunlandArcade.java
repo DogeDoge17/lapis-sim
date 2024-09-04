@@ -14,6 +14,8 @@ import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
 import sun.font.TrueTypeFont;
 
+import java.time.Instant;
+
 public class FunlandArcade extends Scene {
 
     Font sans;
@@ -24,15 +26,15 @@ public class FunlandArcade extends Scene {
 
     @Override
     public void start(){
-         sans = new Font("Comic Sans MS");
+        getObject("steven").dir = -1;
     }
 
     int lapisTexture = 0;
-    String[] lapemos = {"bored","bored-cracked","happy","happy-cracked","neutral","neutral-cracked","tired","tired-cracked"};
+    //String[] lapemos = {"bored","bored-cracked","happy","happy-cracked","neutral","neutral-cracked","tired","tired-cracked"};
 
     @Override
     public void update(){
-        Speaker lappy = (Speaker)getObject("lapis");
+        /*Speaker lappy = (Speaker)getObject("lapis");
         Speaker steven = (Speaker)getObject("steven");
 
 
@@ -70,14 +72,16 @@ public class FunlandArcade extends Scene {
             steven.dir = 1;
         }
 
-        steven.x += steven.dir;
+        steven.x += steven.dir;*/
 
     }
 
     @Override
     public void draw(SpriteBatch batch){
         super.draw(batch);
-        TextRenderer.drawString(batch, sans, "h", 0,100, 126, new Color(1,1,1,1));
+
+
+
 
         //BitmapFont fnt = new BitmapFont();
         //fnt.getData().setScale(126,126);

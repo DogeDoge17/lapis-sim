@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.github.lapissim.Main;
 import io.github.lapissim.game.scenes.FunlandArcade;
+import sun.security.provider.certpath.SunCertPathBuilderException;
+
+import java.util.ArrayList;
+import java.util.Set;
 
 public class Scene {
     public String backDrop;
@@ -40,13 +44,34 @@ public class Scene {
 
     public void start(){}
 
+    public Speaker getSpeaker(String id)
+    {
+        SceneObject obj = getObject(id);
+        if(obj instanceof Speaker)
+            return (Speaker)obj;
+
+        return null;
+    }
+
+    public Speaker[] getSpeakers()
+    {
+        ArrayList<Speaker> list = new ArrayList<>();
+
+        for(int i =0; i < objects.length; i++ )
+        {
+            if(objects[i] instanceof Speaker)
+                list.add((Speaker) objects[i]);
+        }
+        return list.toArray(new Speaker[0]);
+    }
+
     public SceneObject getObject(String id)
     {
         if(objects.length == 0)
             return null;
 
         for(int i = 0; i < objects.length; i++) {
-            if(objects[i].id == id)
+            if(objects[i].id.equalsIgnoreCase(id))
                 return objects[i];
         }
 

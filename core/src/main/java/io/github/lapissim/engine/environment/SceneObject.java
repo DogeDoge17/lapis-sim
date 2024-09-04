@@ -54,7 +54,7 @@ public abstract class SceneObject {
 
     public void draw(SpriteBatch batch){
         batch.setColor(0,0,0,0.50f);
-        batch.draw(texture, (x-((dir*getWidth())/2))+ -dir*10,y-10, 1,1, dir*width, height, scaleX,scaleY,0);
+        batch.draw(texture, (x-((dir*getWidth())/2))+ -dir*5,y-5, 1,1, dir*width, height, scaleX,scaleY,0);
         batch.setColor(1,1,1,1);
         batch.draw(texture, x-((dir*getWidth())/2),y, 1,1, dir*width, height, scaleX,scaleY,0);
 

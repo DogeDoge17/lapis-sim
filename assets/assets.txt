@@ -15,4 +15,6 @@ speakers/lapis/neutral.png
 speakers/lapis/tired-cracked.png
 speakers/lapis/tired.png
 speakers/steven/happy.png
-speakers/steven/natural.png
+speakers/steven/neutral.png
+ui/dialogue-box-nameplate.png
+ui/dialogue-box.png

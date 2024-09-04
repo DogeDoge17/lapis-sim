@@ -22,24 +22,38 @@ public class Font {
 
     public String internalString = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 
+    public String internalPath;
+
     public TextureRegion atlas;
 
+    public float lineSeparation;
+
+    public static HashMap<String, Font> fontCache = new HashMap<>();
+
     public Font(String internalPath) {
+        this.internalPath = internalPath;
         textureMap = new HashMap<>();
         atlas = new TextureRegion(new Texture("font/" + internalPath + ".png"));
         FileHandle hi = Gdx.files.internal("font/" + internalPath + ".fntdat");
         String rawData = hi.readString();
         String[] associatedData = rawData.split("\n");
 
+        lineSeparation = (float)defaultSize*0.95f;
+
         for(int i = 0; i < internalString.length(); i++){
             if(i >= associatedData.length)
                 continue;
             char c = internalString.charAt(i);
-            System.out.println(i);
+            //System.out.println(i);
             String[] lineVars = associatedData[i].split(" ");
             textureMap.putIfAbsent(c, new Rectangle(Float.parseFloat(lineVars[0].replace("\n", "")),Float.parseFloat(lineVars[1].replace("\n", "")),Float.parseFloat(lineVars[2].replace("\n", "")),Float.parseFloat(lineVars[3].replace("\n", ""))));
         }
     }
+
+    public static void cacheFont(Font f){
+        fontCache.putIfAbsent(f.internalPath, f);
+    }
+
     @Override
     protected void finalize() {
     }

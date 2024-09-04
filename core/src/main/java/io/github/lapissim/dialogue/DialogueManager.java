@@ -1,9 +1,18 @@
 package io.github.lapissim.dialogue;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
+import io.github.lapissim.engine.environment.Scene;
+import io.github.lapissim.engine.environment.SceneManager;
+import io.github.lapissim.engine.environment.Speaker;
+import io.github.lapissim.engine.render.Font;
+import io.github.lapissim.engine.render.TextRenderer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +36,18 @@ public class DialogueManager
     private static int compareValue;
     private static boolean retaining = false;
 
+    private static Texture nameplate;
+    private static Texture neNameplatePas;
+
+    private static Line prevLine;
+
     public static void beginDialogue(String path)
     {
+        if(nameplate == null || neNameplatePas == null){
+            nameplate = new Texture("ui/dialogue-box-nameplate.png");
+            neNameplatePas = new Texture("ui/dialogue-box.png");
+        }
+
         {
             FileHandle hi = Gdx.files.internal("dialogue/" + path + ".dd");
             rawDialogue = hi.readString();
@@ -66,6 +85,7 @@ public class DialogueManager
                     line.contents = lineArgs[1];
                     line.speakerId = lineArgs[2];
                     line.portrait = lineArgs[3];
+                    visible = true;
                     break;
                 case "retain":
                     line.lineType = LineType.RETAIN;
@@ -196,6 +216,7 @@ public class DialogueManager
                         String lblName = lineArgs[0].replace(":","");
                         line.labelName = lblName;
                         labels.put(lblName, i);
+                        lines[i] = line;
                         continue;
                     }
                     System.out.println("\033[0;31mInvalid instruction: " + lineArgs[0] + "\033[0m");
@@ -204,14 +225,82 @@ public class DialogueManager
             lines[i] = line;
         }
         linePointer = -1;
+        NextDialogue();
     }
 
     public static void NextDialogue(){
+        while(true){
+            linePointer++;
+            Line line = getLine();
+            if(line == null){
+                EndDialogue();
+                return;
+            }
+
+            switch(line.lineType){
+                case DIA:
+                    return;
+                case END:
+                    EndDialogue();
+                default:
+                    continue;
+            }
+        }
+    }
+
+    public static void EndDialogue(){
+        visible = false;
+        prevLine = null;
+    }
+
+    public static void updateDialogue(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.A))
+        {
+            NextDialogue();
+        }
+    }
+
+    public static void drawDialogue(SpriteBatch batch)
+    {
+        if(!visible)
+            return;
+
+        Line line = getLine();
+
+        if(line.lineType != LineType.DIA && line.lineType != LineType.CHOICE)
+            return;
+
+        for (Speaker s : SceneManager.activeScene.getSpeakers())
+        {
+            s.speaking = false;
+        }
+
+        Speaker speaker = SceneManager.activeScene.getSpeaker(line.speakerId);
+        speaker.speaking = true;
+
+        if(speaker.emotion != line.portrait)
+            speaker.setEmotion(line.portrait);
+
+        if(line.speakerId != null) {
+            batch.draw(nameplate, 0,0);
+            String name = line.speakerId;
+            if(speaker.actorName != null)
+                name = speaker.actorName;
+                TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), name, 173,270, 24, Color.WHITE);
+        }
+        else{
+            batch.draw(neNameplatePas,0,0);
+        }
+
+        TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), line.contents, 100,190, 24, Color.WHITE);
 
     }
 
     public static Line getLine(){
-        return lines[linePointer];
+        if(linePointer < lines.length-1)
+            return lines[linePointer];
+        else
+            return null;
     }
 
     public static String[] splitArguments(String command) {

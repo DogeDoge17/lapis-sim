@@ -3,6 +3,11 @@ START:
   DIA "Welcome to the lapis dating simulator!" "Steven" "happy"
   DIA "Fuck my chud life" "Lapis" "neutral"
   DIA "what" "Steven" "neutral"
+  DIA "Hi steven" "Lapis" "neutral"
+  DIA "Lapis" "Steven" "neutral"
+  Dia "Yes, Steven?" "Lapis" "neutral"
+  Dia "What's a chud" "Steven" "neutral"
+  Dia "Me" "Lapis" "happy"
   CHOICE "fella" "feller" "thatfailedtobecharming" "touch" START OTHER MARVIN FELLAWORDS
   END
 

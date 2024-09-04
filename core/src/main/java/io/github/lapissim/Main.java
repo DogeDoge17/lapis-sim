@@ -10,6 +10,7 @@ import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.environment.Speaker;
+import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.game.scenes.FunlandArcade;
 
 /**
@@ -28,8 +29,8 @@ public class Main extends ApplicationAdapter {
         batch = new SpriteBatch();
         //image = new Texture("libgdx.png");
         DialogueManager.beginDialogue("test/test");
-        SceneManager.loadNewScene(new FunlandArcade(new SceneObject[]{new Speaker("lapis", "Lapis", "neutral", Speaker.RightAnchor, 109),new Speaker("steven", "Steven", "happy", 0, 109)}));
-
+        SceneManager.loadNewScene(new FunlandArcade(new SceneObject[]{new Speaker("lapis", "Lapis", "neutral", 200, 109),new Speaker("Steven", "Steven", "happy", Speaker.RightAnchor-100, 140)}));
+        Font.cacheFont(new Font("Comic Sans MS"));
 
     }
 
@@ -41,12 +42,14 @@ public class Main extends ApplicationAdapter {
 
     public void update() {
         SceneManager.updateActive();
+        DialogueManager.updateDialogue();
     }
 
     public void realRender() {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         batch.begin();
         SceneManager.drawActive(batch);
+        DialogueManager.drawDialogue(batch);
         //batch.draw(image, 140, 210, image.getWidth(), image.getHeight());
 
         batch.end();
