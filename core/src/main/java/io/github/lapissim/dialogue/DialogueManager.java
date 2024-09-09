@@ -13,6 +13,7 @@ import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
+import sun.security.provider.certpath.SunCertPathBuilderException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,6 +137,11 @@ public class DialogueManager
                 case "end":
                     line.lineType = LineType.END;
                     break;
+                case "visible":
+                    line.lineType = LineType.VISIBLE;
+                    line.speakerId = lineArgs[1];
+                    line.visible = Boolean.parseBoolean(lineArgs[2]);
+                    break;
                 case "ret":
                     line.lineType = LineType.RETURN;
                     break;
@@ -242,6 +248,10 @@ public class DialogueManager
                     return;
                 case END:
                     EndDialogue();
+                    break;
+                case VISIBLE:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).setVisibility(line.visible);
+
                 default:
                     continue;
             }

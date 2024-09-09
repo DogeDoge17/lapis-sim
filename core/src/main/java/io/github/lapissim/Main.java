@@ -29,7 +29,7 @@ public class Main extends ApplicationAdapter {
         batch = new SpriteBatch();
         //image = new Texture("libgdx.png");
         DialogueManager.beginDialogue("test/test");
-        SceneManager.loadNewScene(new FunlandArcade(new SceneObject[]{new Speaker("lapis", "Lapis", "neutral", 200, 109),new Speaker("Steven", "Steven", "happy", Speaker.RightAnchor-100, 140)}));
+        SceneManager.loadNewScene(new FunlandArcade(new SceneObject[]{new Speaker("lapis", "Lapis", "neutral", 200, 109),new Speaker("Steven", "Steven", "happy", Speaker.RightAnchor-100, 140), new Speaker("Carti", "Playboi Carti", "neutral",SCREENWIDTH/2, 140)}));
         Font.cacheFont(new Font("Comic Sans MS"));
 
     }

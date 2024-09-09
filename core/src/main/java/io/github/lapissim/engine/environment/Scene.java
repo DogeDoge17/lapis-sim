@@ -40,6 +40,9 @@ public class Scene {
 
     public void update()
     {
+        for(int i = 0; i < objects.length; i++){
+            objects[i].update();
+        }
     }
 
     public void start(){}

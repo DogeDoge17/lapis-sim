@@ -13,8 +13,11 @@ public class Speaker extends SceneObject {
     @Override
     public void draw(SpriteBatch batch){
         super.draw(batch);
+        if(!visible)
+            return;
+
         if(!speaking && DialogueManager.visible) {
-            batch.setColor(0, 0, 0, 0.25f);
+            batch.setColor(0, 0, 0, 0.3f);
             batch.draw(texture, (x - ((dir * getWidth()) / 2)), y, 1, 1, dir * width, height, scaleX, scaleY, 0);
             batch.setColor(1, 1, 1, 1);
         }

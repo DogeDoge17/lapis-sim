@@ -1,14 +1,26 @@
 START:
 
-  DIA "Welcome to the lapis dating simulator!" "Steven" "happy"
-  DIA "Fuck my chud life" "Lapis" "neutral"
+  DIA "Welcome to the lapis simulator!" "Steven" "happy"
+  DIA "flip my chud life" "Lapis" "neutral"
   DIA "what" "Steven" "neutral"
   DIA "Hi steven" "Lapis" "neutral"
   DIA "Lapis" "Steven" "neutral"
   Dia "Yes, Steven?" "Lapis" "neutral"
   Dia "What's a chud" "Steven" "neutral"
   Dia "Me" "Lapis" "happy"
-  CHOICE "fella" "feller" "thatfailedtobecharming" "touch" START OTHER MARVIN FELLAWORDS
+  Dia "youre so sigma" "steven" "neutral"
+  Dia "why did you say that" "steven" "neutral"
+  Dia "you smell like poop!" "steven" "neutral"
+  Dia "shut up bro!" "lapis" "bored"
+  dia "ayo what the uwu" "steven" "happy"
+  dia "hey guys" "carti" "neutral"
+  dia "what" "steven" "neutral"
+  dia "steven who is that" "lapis" "neutral"
+  visible "Carti" true
+  dia "Hey guys its me playboi carti" "carti" "neutral"
+  dia "wow! its playboi carti!" "steven" "happy"
+  dia "who?" "lapis" "tired"
+  dia "kys" "steven" "mad"
   END
 
 OTHER:

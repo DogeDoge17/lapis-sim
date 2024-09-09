@@ -9,6 +9,9 @@ public class Line
     public LineType lineType;
     public int position;
     public boolean blockade;
+
+    public boolean visible;
+
     public String speakerId;
 
     public Vector2 vector;

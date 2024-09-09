@@ -6,6 +6,7 @@ font/Comic Sans MS.fntdat
 font/Comic Sans MS.json
 font/Comic Sans MS.png
 libgdx.png
+speakers/carti/neutral.png
 speakers/lapis/bored-cracked.png
 speakers/lapis/bored.png
 speakers/lapis/happy-cracked.png
@@ -15,6 +16,7 @@ speakers/lapis/neutral.png
 speakers/lapis/tired-cracked.png
 speakers/lapis/tired.png
 speakers/steven/happy.png
+speakers/steven/mad.png
 speakers/steven/neutral.png
 ui/dialogue-box-nameplate.png
 ui/dialogue-box.png

@@ -27,6 +27,7 @@ public class FunlandArcade extends Scene {
     @Override
     public void start(){
         getObject("steven").dir = -1;
+        getSpeaker("Carti").setVisibility(false);
     }
 
     int lapisTexture = 0;
@@ -73,7 +74,7 @@ public class FunlandArcade extends Scene {
         }
 
         steven.x += steven.dir;*/
-
+        super.update();
     }
 
     @Override
