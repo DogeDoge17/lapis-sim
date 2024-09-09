@@ -2,14 +2,17 @@ package io.github.lapissim.engine.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 
+import java.nio.IntBuffer;
 import java.util.HashMap;
 
 public class Font {
@@ -28,9 +31,16 @@ public class Font {
 
     public float lineSeparation;
 
+    public static long usedTexture = 0;
+
     public static HashMap<String, Font> fontCache = new HashMap<>();
 
     public Font(String internalPath) {
+
+        IntBuffer intBuffer = BufferUtils.newIntBuffer(16);
+        Gdx.gl20.glGetIntegerv(GL20.GL_MAX_TEXTURE_SIZE, intBuffer);
+        System.out.println(intBuffer.get());
+
         this.internalPath = internalPath;
         textureMap = new HashMap<>();
         atlas = new TextureRegion(new Texture("font/" + internalPath + ".png"));
