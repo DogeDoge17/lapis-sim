@@ -29,11 +29,12 @@ public class SceneManager {
 
     public static void loadNewScene(String name, String backdrop, SceneObject[] objects)
     {
-
+        loadNewScene(new Scene(name,backdrop,objects));
     }
 
     public static void loadNewScene(Scene scene)
     {
         activeScene = scene;
+        activeScene.start();
     }
 }

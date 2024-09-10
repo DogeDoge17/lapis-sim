@@ -1,17 +1,32 @@
-package io.github.lapissim.game.scenes;
+package io.github.lapissim.game.scenes.prologue.scenes;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import io.github.lapissim.Main;
 import io.github.lapissim.engine.environment.Scene;
 import io.github.lapissim.engine.environment.SceneObject;
+import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
+import io.github.lapissim.game.prefabs.Doorway;
+import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
+import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
 
-public class FunlandArcade extends Scene {
+public class FunlandArcadeP extends Scene {
 
     Font sans;
 
-    public FunlandArcade(SceneObject[] objs) {
+    public FunlandArcadeP(SceneObject[] objs) {
         super("Funland Arcade", "beach-city/funland-arcade", objs);
     }
+
+    public FunlandArcadeP()
+    {
+        super("Funland Arcade", "beach-city/funland-arcade");
+        addObject(new LapisP("Lapis", "neutral", 200, 109));
+        addObject(new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140));
+        addObject(new Speaker("Carti", "Playboi Carti", "neutral", Main.SCREENWIDTH/2, 140));
+        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor, 100,200, 500));
+    }
+
 
     @Override
     public void start(){

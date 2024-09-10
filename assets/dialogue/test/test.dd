@@ -21,6 +21,7 @@ START:
   dia "wow! its playboi carti!" "steven" "happy"
   dia "who?" "lapis" "tired"
   dia "kys" "steven" "mad"
+  visible carti false
   END
 
 OTHER:

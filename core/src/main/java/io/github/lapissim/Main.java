@@ -1,14 +1,22 @@
 package io.github.lapissim;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
-import io.github.lapissim.game.scenes.FunlandArcade;
+import io.github.lapissim.game.prefabs.Doorway;
+import io.github.lapissim.game.scenes.prologue.scenes.BigDonutP;
+import io.github.lapissim.game.scenes.prologue.scenes.FunlandArcadeP;
+import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
+import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -20,14 +28,24 @@ public class Main extends ApplicationAdapter {
 
     private SpriteBatch batch;
     //private Texture image;
+    public static Rectangle mouseRec;
+    public Texture cursor;
+
+    public static ShaderProgram outlineShader;
+    public static ShaderProgram defaultShader;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         //image = new Texture("libgdx.png");
+        cursor = new Texture("cursor.png");
         DialogueManager.beginDialogue("test/test");
-        SceneManager.loadNewScene(new FunlandArcade(new SceneObject[]{new Speaker("lapis", "Lapis", "neutral", 200, 109),new Speaker("Steven", "Steven", "happy", Speaker.RightAnchor-100, 140), new Speaker("Carti", "Playboi Carti", "neutral",SCREENWIDTH/2, 140)}));
+        SceneManager.loadNewScene(new FunlandArcadeP());
+        //SceneManager.loadNewScene(new FunlandArcadeP(new SceneObject[]{new LapisP("Lapis", "neutral", 200, 109),new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140), new Speaker("Carti", "Playboi Carti", "neutral",SCREENWIDTH/2, 140), new Doorway(new BigDonutP(),Speaker.RightAnchor, 100,)}));
         Font.cacheFont(new Font("Comic Sans MS"));
+
+        defaultShader = SpriteBatch.createDefaultShader();
+        outlineShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/outline.frag").readString());
 
     }
 
@@ -38,6 +56,7 @@ public class Main extends ApplicationAdapter {
     }
 
     public void update() {
+        mouseRec = new Rectangle(Gdx.input.getX(), SCREENHEIGHT- Gdx.input.getY(), 9, 9);
         SceneManager.updateActive();
         DialogueManager.updateDialogue();
     }
@@ -47,6 +66,8 @@ public class Main extends ApplicationAdapter {
         batch.begin();
         SceneManager.drawActive(batch);
         DialogueManager.drawDialogue(batch);
+        batch.setColor(0,0,0,1);
+        batch.draw(cursor, mouseRec.x, mouseRec.y, mouseRec.width, mouseRec.height);
         //batch.draw(image, 140, 210, image.getWidth(), image.getHeight());
 
         batch.end();

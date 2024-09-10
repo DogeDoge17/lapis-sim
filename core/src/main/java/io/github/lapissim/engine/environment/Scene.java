@@ -4,11 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.github.lapissim.Main;
-import io.github.lapissim.game.scenes.FunlandArcade;
-import sun.security.provider.certpath.SunCertPathBuilderException;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class Scene {
     public String backDrop;
@@ -27,15 +24,27 @@ public class Scene {
         start();
     }
 
+    public Scene(String sceneName,  String backDrop){
+        this.backDrop = backDrop;
+        this.name = sceneName;
+
+        bgText = new TextureRegion( new Texture("backdrops/"+backDrop + ".png"));
+        objects = new SceneObject[0];
+    }
+
+
+
     public void draw(SpriteBatch batch)
     {
         //draw (TextureRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation)
+        batch.setColor(1,1,1,1);
         batch.draw(bgText, 0, 0, 1, 1, Main.SCREENWIDTH, Main.SCREENHEIGHT,1, 1, 0);
 
         if(objects != null)
         for(int i = 0; i< objects.length; i++){
             objects[i].draw(batch);
         }
+        batch.setColor(1,1,1,1);
     }
 
     public void update()
@@ -49,6 +58,9 @@ public class Scene {
 
     public Speaker getSpeaker(String id)
     {
+        if(objects == null)
+            return null;
+
         SceneObject obj = getObject(id);
         if(obj instanceof Speaker)
             return (Speaker)obj;
@@ -58,6 +70,9 @@ public class Scene {
 
     public Speaker[] getSpeakers()
     {
+        if(objects == null)
+            return null;
+
         ArrayList<Speaker> list = new ArrayList<>();
 
         for(int i =0; i < objects.length; i++ )
@@ -70,6 +85,9 @@ public class Scene {
 
     public SceneObject getObject(String id)
     {
+        if(objects == null)
+            return null;
+
         if(objects.length == 0)
             return null;
 
@@ -83,6 +101,9 @@ public class Scene {
 
     public void addObject(SceneObject obj)
     {
+        if(objects == null)
+            objects = new SceneObject[0];
+
         SceneObject[] newl = new SceneObject[objects.length+1];
         for(int i = 0; i < objects.length; i ++){
             newl[i] = objects[i];

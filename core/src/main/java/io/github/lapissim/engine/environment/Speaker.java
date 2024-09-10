@@ -5,7 +5,6 @@ import io.github.lapissim.Main;
 import io.github.lapissim.dialogue.DialogueManager;
 
 public class Speaker extends SceneObject {
-    public String actorName;
     public boolean speaking;
 
     public final static int RightAnchor = Main.SCREENWIDTH - 100;

@@ -260,7 +260,7 @@ public class DialogueManager
     }
 
     public static void updateDialogue(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.A))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT))
         {
             NextDialogue();
         }
@@ -290,9 +290,9 @@ public class DialogueManager
         if(line.speakerId != null) {
             batch.draw(nameplate, 0,0);
             String name = line.speakerId;
-            if(speaker.actorName != null)
-                name = speaker.actorName;
-                TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), name, 173,270, 24, Color.WHITE);
+            if(speaker.displayName != null)
+                name = speaker.displayName;
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), name, 173,270, 24, Color.WHITE);
         }
         else{
             batch.draw(neNameplatePas,0,0);

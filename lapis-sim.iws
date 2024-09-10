@@ -5,16 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/backdrops/beach-city/BigDonut.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/cursor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/dialogue/test/test2.dd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/dialogue/test/test3.dd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/dialogue/test/test4.dd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/dialogue/test/test5.dd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/shaders/outline.frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/square.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/Doorway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/speakers/LapisP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/speakers/StevenP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" beforeDir="false" afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/dialogue/test/test.dd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/dialogue/test/test.dd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/FunlandArcade.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/FunlandArcade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/BigDonut1.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/BigDonutP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/FunlandArcade.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/FunlandArcadeP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,25 +168,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "full.screen.before.presentation.mode": "true",
+    "last_opened_file_path": "C:/Users/ti2ge/source/java/lapis-sim/assets",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.github.lapissim.engine.render" />
       <recent name="io.github.lapissim.engine.environment" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ti2ge\source\java\lapis-sim\assets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ti2ge\source\java\lapis-sim\assets" />
       <recent name="C:\Users\ti2ge\source\java\lapis-sim\core\src\main\java\io\github\lapissim\dialogue" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -215,7 +231,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -335,9 +351,19 @@
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="33" />
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/speakers/StevenP.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/FunlandArcadeP.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

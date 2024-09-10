@@ -1,13 +1,17 @@
+backdrops/beach-city/BigDonut.png
 backdrops/beach-city/funland-arcade-inside.png
 backdrops/beach-city/funland-arcade.png
 backdrops/beach-city/funland-gate.png
+cursor.png
 dialogue/test/test.dd
+dialogue/test/test2.dd
+dialogue/test/test3.dd
+dialogue/test/test4.dd
+dialogue/test/test5.dd
 font/Comic Sans MS.fntdat
-font/Comic Sans MS.fntdat.bak
-font/Comic Sans MS.json.bak
 font/Comic Sans MS.png
-font/Comic Sans MS.png.bak
 libgdx.png
+shaders/outline.frag
 speakers/carti/neutral.png
 speakers/lapis/bored-cracked.png
 speakers/lapis/bored.png
@@ -20,5 +24,6 @@ speakers/lapis/tired.png
 speakers/steven/happy.png
 speakers/steven/mad.png
 speakers/steven/neutral.png
+square.png
 ui/dialogue-box-nameplate.png
 ui/dialogue-box.png
