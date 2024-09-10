@@ -4,20 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.BufferUtils;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonReader;
 
 import java.nio.IntBuffer;
 import java.util.HashMap;
 
 public class Font {
     public String fontFamily;
-    public HashMap<Character, Rectangle> textureMap;
+    public HashMap<Character, LineChar> textureMap;
 
     public int defaultSize = 126;
 
@@ -56,8 +52,12 @@ public class Font {
             char c = internalString.charAt(i);
             //System.out.println(i);
             String[] lineVars = associatedData[i].split(" ");
-            textureMap.putIfAbsent(c, new Rectangle(Float.parseFloat(lineVars[0].replace("\n", "")),Float.parseFloat(lineVars[1].replace("\n", "")),Float.parseFloat(lineVars[2].replace("\n", "")),Float.parseFloat(lineVars[3].replace("\n", ""))));
+            textureMap.putIfAbsent(c, new LineChar(readyCoord(lineVars[0]),readyCoord(lineVars[1]), readyCoord(lineVars[2]), readyCoord(lineVars[3]),readyCoord(lineVars[4])));
         }
+    }
+
+    int readyCoord(String s){
+        return Integer.parseInt(s.replace("\n", "").replace("\r",""));
     }
 
     public static void cacheFont(Font f){
@@ -66,5 +66,20 @@ public class Font {
 
     @Override
     protected void finalize() {
+    }
+}
+
+class LineChar{
+    public int xS, yS, width, height, x = 0;
+
+    public LineChar(){}
+
+    public LineChar(int xS, int yS, int width, int height, int x)
+    {
+        this.xS = xS;
+        this.yS = yS;
+        this.width = width;
+        this.height = height;
+        this.x = x;
     }
 }

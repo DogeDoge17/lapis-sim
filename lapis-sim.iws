@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" beforeDir="false" afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/FunlandArcade.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/FunlandArcade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -312,13 +321,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java</url>
-          <line>91</line>
+          <line>87</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java</url>
-          <line>351</line>
+          <line>347</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

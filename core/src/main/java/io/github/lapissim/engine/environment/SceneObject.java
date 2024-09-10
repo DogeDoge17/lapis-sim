@@ -69,7 +69,7 @@ public abstract class SceneObject {
     }
 
     public void update(){
-        ///Gdx.input.getX()
+        ///Gdx.input.getX   ()
         //System.out.println( + ":" + Gdx.input.getY());
         hovering = hoveringOver(new Rectangle(Gdx.input.getX(),  Gdx.input.getY(), 9, 9));
 

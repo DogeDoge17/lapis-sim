@@ -1,20 +1,9 @@
 package io.github.lapissim.game.scenes;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import io.github.lapissim.Main;
-import io.github.lapissim.engine.environment.Prop;
 import io.github.lapissim.engine.environment.Scene;
 import io.github.lapissim.engine.environment.SceneObject;
-import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
-import io.github.lapissim.engine.render.TextRenderer;
-import sun.font.TrueTypeFont;
-
-import java.time.Instant;
 
 public class FunlandArcade extends Scene {
 

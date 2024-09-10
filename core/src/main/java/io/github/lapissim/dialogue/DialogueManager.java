@@ -7,16 +7,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
-import io.github.lapissim.engine.environment.Scene;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
-import sun.security.provider.certpath.SunCertPathBuilderException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
