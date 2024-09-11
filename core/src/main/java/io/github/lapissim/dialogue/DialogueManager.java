@@ -50,6 +50,8 @@ public class DialogueManager
     private static float skipCountdown = 100;
     private static float skipTimer = 0;
 
+    private static Vector2 boxPos = new Vector2(0,0);
+
     private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
     public static void beginDialogue(String path)
     {
@@ -307,6 +309,9 @@ public class DialogueManager
             char c = displayBuilder.charAt(i-1);
             if(c == ' '){
                 if(displayBuilder.length() > i) {
+                    if(displayPtr - i > 50) //stops words longer than 50 chars from wrapping and still looking bad
+                        break;
+
                     displayBuilder.deleteCharAt(i-1);
                     displayBuilder.insert(i-1, '\n');
                 }
