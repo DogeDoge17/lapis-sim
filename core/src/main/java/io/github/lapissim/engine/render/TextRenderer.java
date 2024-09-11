@@ -18,13 +18,17 @@ public class TextRenderer
 
         for(int i = 0; i < inp.length(); i++){
             char c = inp.charAt(i);
+            ;
+
             if (c == '\n' || c == '\r') {
-                charOffset = 0;
+                charOffset = x;
                 prevRec = new LineChar();
                 lineOffset -= fn.lineSeparation;
                 continue;
             }
             LineChar rec = fn.textureMap.get(c);
+            if(rec == null)
+                return;
             fn.atlas.setRegion((int)rec.xS,(int)rec.yS,(int)rec.width, (int)rec.height);
             //int foo = (int)Math.floor(prevRec.x/fn.defaultSize);
             charOffset += (prevRec.width - prevRec.x) * fontPercent;

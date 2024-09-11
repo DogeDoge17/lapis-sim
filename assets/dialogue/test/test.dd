@@ -22,6 +22,11 @@ START:
   dia "who?" "lapis" "tired"
   dia "kys" "steven" "mad"
   visible carti false
+  dia "Hey, steven" "lapis" "neutral"
+  dia "i didnt appreciate how you talked to me there" "lapis" "neutral"
+  dia "im going to trap you in a time loop" "lapis" "neutral"
+  linear
+  position lapis 0 -500
   END
 
 OTHER:

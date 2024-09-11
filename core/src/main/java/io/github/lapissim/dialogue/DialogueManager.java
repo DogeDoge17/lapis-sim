@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import io.github.lapissim.engine.Time;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
@@ -29,15 +30,27 @@ public class DialogueManager
 
     public static HashMap<String, Integer> labels;
 
-    private static ArrayList<Integer> stack;
+    private static ArrayList<Integer> stack = new ArrayList<>();
     private static int compareValue;
     private static boolean retaining = false;
 
     private static Texture nameplate;
     private static Texture neNameplatePas;
 
-    private static Line prevLine;
+    private static StringBuilder displayBuilder;
+    private static int displayPtr;
 
+
+    /**
+     * milliseconds
+     */
+    private static int printSpeed = 20;
+    private static float countDown = 0;
+
+    private static float skipCountdown = 100;
+    private static float skipTimer = 0;
+
+    private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
     public static void beginDialogue(String path)
     {
         if(nameplate == null || neNameplatePas == null){
@@ -78,8 +91,13 @@ public class DialogueManager
 
                     if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
 
+                    String contents = lineArgs[1];
+                    for (int j = 0; j < diaFilter.length; j++) {
+                        contents = contents.replace(diaFilter[j].in, diaFilter[j].out);
+                    }
+
                     line.blockade = true;
-                    line.contents = lineArgs[1];
+                    line.contents = contents;
                     line.speakerId = lineArgs[2];
                     line.portrait = lineArgs[3];
                     visible = true;
@@ -110,10 +128,10 @@ public class DialogueManager
                     line.speakerId = lineArgs[1];
                     line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
                     break;
-                case "move":
+                case "position":
                     if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
 
-                    line.lineType = LineType.MOVE;
+                    line.lineType = LineType.POSITION;
                     line.speakerId = lineArgs[1];
                     line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
                     break;
@@ -134,6 +152,8 @@ public class DialogueManager
                     line.lineType = LineType.END;
                     break;
                 case "visible":
+                    if(lineArgs.length < 3) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
                     line.lineType = LineType.VISIBLE;
                     line.speakerId = lineArgs[1];
                     line.visible = Boolean.parseBoolean(lineArgs[2]);
@@ -230,7 +250,17 @@ public class DialogueManager
         NextDialogue();
     }
 
-    public static void NextDialogue(){
+    public static void NextDialogue()
+    {
+        Line l = getLine();
+        if(l != null) {
+            if (displayPtr < l.contents.length()-1){
+                while(addChar(l));
+                skipTimer = 0;
+                return;
+            }
+        }
+
         while(true){
             linePointer++;
             Line line = getLine();
@@ -241,13 +271,23 @@ public class DialogueManager
 
             switch(line.lineType){
                 case DIA:
+                    displayPtr = 0;
+                    displayBuilder = new StringBuilder(line.contents.length() +6);
                     return;
                 case END:
                     EndDialogue();
                     break;
                 case VISIBLE:
                     SceneManager.activeScene.getSpeaker(line.speakerId).setVisibility(line.visible);
-
+                    break;
+                case JMP:
+                    stack.add(linePointer);
+                    linePointer = labels.get(line.destination);
+                    break;
+                case RETURN:
+                    linePointer = stack.get(stack.size()-1) +1;
+                    stack.remove(stack.size()-1);
+                    break;
                 default:
                     continue;
             }
@@ -256,13 +296,67 @@ public class DialogueManager
 
     public static void EndDialogue(){
         visible = false;
-        prevLine = null;
+        stack = new ArrayList<>();
+    }
+
+    private static void insertNewline(){
+
+        //Line l = getLine();
+        for(int i = displayPtr; i > 0; i--)
+        {
+            char c = displayBuilder.charAt(i-1);
+            if(c == ' '){
+                if(displayBuilder.length() > i) {
+                    displayBuilder.deleteCharAt(i-1);
+                    displayBuilder.insert(i-1, '\n');
+                }
+                return;
+            }
+        }
+        displayBuilder.append('\n');
+        displayPtr++;
+    }
+
+    private static boolean addChar(Line line)
+    {
+        if(displayPtr >= line.contents.length()){
+            return false;
+        }
+
+        displayBuilder.append(line.contents.charAt(displayPtr));
+        displayPtr++;
+
+        if(displayPtr % 50 == 0){
+            insertNewline();
+            //displayPtr++;
+        }
+        return true;
     }
 
     public static void updateDialogue(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT))
+        if(!visible)
+            return;
+
+        countDown -= Time.deltaTime * 1000;
+        skipTimer -= Time.deltaTime * 1000;
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
         {
             NextDialogue();
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && skipTimer <= 0)
+        {
+            NextDialogue();
+            skipTimer = skipCountdown;
+        }
+
+        Line line = getLine();
+        if(line != null)
+
+        if(line != null && (countDown <= 0 && displayPtr < line.contents.length())){
+            addChar(line);
+            countDown = printSpeed;
         }
     }
 
@@ -298,12 +392,14 @@ public class DialogueManager
             batch.draw(neNameplatePas,0,0);
         }
 
-        TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), line.contents, 100,190, 24, Color.WHITE);
-
+        if(displayBuilder == null)
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), line.contents, 100,190, 24, Color.WHITE);
+        else
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayBuilder.toString(), 100,190, 24, Color.WHITE);
     }
 
     public static Line getLine(){
-        if(linePointer < lines.length-1)
+        if(linePointer < lines.length-1 && linePointer >= 0)
             return lines[linePointer];
         else
             return null;
@@ -324,28 +420,12 @@ public class DialogueManager
 
         return argsList.toArray(new String[0]);
     }
-    private static String cleanDialogue(String input){
-        Pattern pattern = Pattern.compile("\"([^\"]*)\"");
-        Matcher matcher = pattern.matcher(input);
-
-        StringBuilder cleanedString = new StringBuilder();
-
-        int lastIndex = 0;
-
-        while (matcher.find()) {
-            String beforeQuote = input.substring(lastIndex, matcher.start());
-            cleanedString.append(beforeQuote.replaceAll("[ \t]+", " ").trim()).append(" ");
-
-            cleanedString.append(matcher.group()).append(" ");
-
-            lastIndex = matcher.end();
-        }
-        String afterLastQuote = input.substring(lastIndex);
-        cleanedString.append(afterLastQuote.replaceAll("[ \t]+", " ").trim());
-
-        System.out.println("Original: " + input);
-        System.out.println("Cleaned: " + cleanedString.toString().trim());
-
-        return cleanedString.toString().trim();
+}
+class FilterEntry {
+    public final String in;
+    public final String out;
+    public FilterEntry(String in, String out){
+        this.in = in;
+        this.out = out;
     }
 }

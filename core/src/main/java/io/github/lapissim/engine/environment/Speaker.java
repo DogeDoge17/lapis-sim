@@ -1,8 +1,11 @@
 package io.github.lapissim.engine.environment;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
 import io.github.lapissim.dialogue.DialogueManager;
+
+import java.util.ArrayList;
 
 public class Speaker extends SceneObject {
     public boolean speaking;

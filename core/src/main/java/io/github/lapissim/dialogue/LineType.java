@@ -28,7 +28,13 @@ public enum LineType
      * Takes in no arguments. Disables the effects of retain.
      */
     DETAIN,
+    /**
+     * Eases the movement in and out. Takes in one argument. Milliseconds. Affects next transformation with time scaling.
+     */
     LERP,
+    /**
+     * Glides the movement. Takes in one argument. Milliseconds. Affects next transformation with time scaling.
+     */
     LINEAR,
     /**
      * Takes in three arguments. SpeakerID, X-Scale, Y-Scale. Sets the scale based off of 1 the sprite. Can be affected by time scaling.
@@ -41,7 +47,7 @@ public enum LineType
     /**
      * Takes in three arguments. SpeakerID, X-Coord, Y-Coord. Sets the absolute position of the sprite. Can be affected by time scaling.
      */
-    MOVE,
+    POSITION,
     /**
      * Takes in two arguments. SpeakerID, degrees. Sets the absolute rotation of the sprite. Can be affected by time scaling.
      */

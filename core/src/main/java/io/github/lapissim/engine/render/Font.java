@@ -44,7 +44,7 @@ public class Font {
         String rawData = hi.readString();
         String[] associatedData = rawData.split("\n");
 
-        lineSeparation = (float)defaultSize*0.95f;
+        lineSeparation = (float)defaultSize*0.3f;
 
         for(int i = 0; i < internalString.length(); i++){
             if(i >= associatedData.length)
