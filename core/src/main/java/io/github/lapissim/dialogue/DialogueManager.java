@@ -8,11 +8,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.engine.Time;
+import io.github.lapissim.engine.aniamation.MoveNode;
+import io.github.lapissim.engine.aniamation.TransformStyle;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -40,17 +41,20 @@ public class DialogueManager
     private static StringBuilder displayBuilder;
     private static int displayPtr;
 
+    private final static int printSpeed = 20;
+    private static float charPrintTimer = 0;
 
-    /**
-     * milliseconds
-     */
-    private static int printSpeed = 20;
-    private static float countDown = 0;
-
-    private static float skipCountdown = 100;
+    private final static float skipInterval = 75;
     private static float skipTimer = 0;
 
-    private static Vector2 boxPos = new Vector2(0,0);
+    private final static float autoInterval = 1.5f;
+    private static float autoTimer = autoInterval;
+    public static boolean auto;
+    private static float autoDots;
+    private static byte autoDotsCount;
+
+    private static TransformStyle transformStyle = TransformStyle.none;
+    private static float transformTime = 0f;
 
     private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
     public static void beginDialogue(String path)
@@ -111,23 +115,28 @@ public class DialogueManager
                     line.lineType = LineType.DETAIN;
                     break;
                 case "lerp":
+                    if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
                     line.lineType = LineType.LERP;
+                    line.time = Float.parseFloat(lineArgs[1]);
                     break;
                 case "linear":
+                    if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
                     line.lineType = LineType.LINEAR;
+                    line.time = Float.parseFloat(lineArgs[1]);
                     break;
                 case "scale":
                     if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
 
                     line.lineType = LineType.SCALE;
                     line.speakerId = lineArgs[1];
-                    line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
+                    line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[2]));
                     break;
                 case "translate":
                     if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
 
                     line.lineType = LineType.TRANSLATE;
                     line.speakerId = lineArgs[1];
+
                     line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
                     break;
                 case "position":
@@ -135,6 +144,7 @@ public class DialogueManager
 
                     line.lineType = LineType.POSITION;
                     line.speakerId = lineArgs[1];
+
                     line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
                     break;
                 case "rotate":
@@ -142,7 +152,7 @@ public class DialogueManager
 
                     line.lineType = LineType.ROTATE;
                     line.speakerId = lineArgs[1];
-                    line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
+                    line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[2]));
                     break;
                 case "jmp":
                     if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
@@ -282,6 +292,9 @@ public class DialogueManager
                 case VISIBLE:
                     SceneManager.activeScene.getSpeaker(line.speakerId).setVisibility(line.visible);
                     break;
+                case DIR:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).dir = line.flipDirection;
+                    break;
                 case JMP:
                     stack.add(linePointer);
                     linePointer = labels.get(line.destination);
@@ -289,6 +302,36 @@ public class DialogueManager
                 case RETURN:
                     linePointer = stack.get(stack.size()-1) +1;
                     stack.remove(stack.size()-1);
+                    break;
+                case RETAIN:
+                    retaining = true;
+                    break;
+                case DETAIN:
+                    retaining = false;
+                    break;
+                case LINEAR:
+                    transformStyle = TransformStyle.linear;
+                    transformTime = line.time;
+                    break;
+                case LERP:
+                    transformStyle = TransformStyle.lerp;
+                    transformTime = line.time;
+                    break;
+                case POSITION:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).addMoveKeyframe(new MoveNode(line.vector, transformTime, transformStyle));
+                    if(!retaining){
+                        transformStyle = TransformStyle.none;
+                        transformTime = 0;
+                    }
+                    break;
+                case TRANSLATE:
+                    MoveNode node = new MoveNode(line.vector, transformTime, transformStyle);
+                    node.additive = true;
+                    SceneManager.activeScene.getSpeaker(line.speakerId).addMoveKeyframe(node);
+                    if(!retaining){
+                        transformStyle = TransformStyle.none;
+                        transformTime = 0;
+                    }
                     break;
                 default:
                     continue;
@@ -309,9 +352,6 @@ public class DialogueManager
             char c = displayBuilder.charAt(i-1);
             if(c == ' '){
                 if(displayBuilder.length() > i) {
-                    if(displayPtr - i > 50) //stops words longer than 50 chars from wrapping and still looking bad
-                        break;
-
                     displayBuilder.deleteCharAt(i-1);
                     displayBuilder.insert(i-1, '\n');
                 }
@@ -342,7 +382,7 @@ public class DialogueManager
         if(!visible)
             return;
 
-        countDown -= Time.deltaTime * 1000;
+        charPrintTimer -= Time.deltaTime * 1000;
         skipTimer -= Time.deltaTime * 1000;
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
@@ -353,17 +393,48 @@ public class DialogueManager
         if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && skipTimer <= 0)
         {
             NextDialogue();
-            skipTimer = skipCountdown;
+            skipTimer = skipInterval;
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C))
+        {
+            auto = !auto;
+        }
+
+
+        if(auto){
+            autoDots -= Time.deltaTime;
+            autoTimer -= Time.deltaTime;
+            if(autoDots <= 0)
+            {
+                autoDotsCount++;
+                autoDots = .9f;
+            }
+            if(autoDotsCount == 4) {
+                autoDotsCount =0;
+            }
+
+            Line l = getLine();
+            if (displayPtr >= l.contents.length()-1){
+                if(autoTimer <= 0){
+                    autoTimer = autoInterval;
+                    NextDialogue();
+                    return;
+                }
+            }
+
         }
 
         Line line = getLine();
         if(line != null)
 
-        if(line != null && (countDown <= 0 && displayPtr < line.contents.length())){
-            addChar(line);
-            countDown = printSpeed;
-        }
+            if(line != null && (charPrintTimer <= 0 && displayPtr < line.contents.length())){
+                addChar(line);
+                charPrintTimer = printSpeed;
+            }
     }
+
+
 
     public static void drawDialogue(SpriteBatch batch)
     {
@@ -397,10 +468,21 @@ public class DialogueManager
             batch.draw(neNameplatePas,0,0);
         }
 
-        if(displayBuilder == null)
-            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), line.contents, 100,190, 24, Color.WHITE);
-        else
-            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayBuilder.toString(), 100,190, 24, Color.WHITE);
+        if(displayBuilder == null) TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), line.contents, 100,190, 24, Color.WHITE);
+        else TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayBuilder.toString(), 100,190, 24, Color.WHITE);
+
+        if(auto)
+        {
+            StringBuilder dotBuilder = new StringBuilder(8);
+            dotBuilder.append("auto");
+            for(byte i = 0; i < autoDotsCount; i++){
+                dotBuilder.append('.');
+            }
+
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), dotBuilder.toString(), 100,15, 14, Color.GRAY);
+        }
+
+
     }
 
     public static Line getLine(){

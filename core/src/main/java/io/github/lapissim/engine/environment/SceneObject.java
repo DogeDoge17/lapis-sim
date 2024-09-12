@@ -11,6 +11,9 @@ import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
 import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.engine.Time;
+import io.github.lapissim.engine.aniamation.MoveNode;
+import io.github.lapissim.engine.aniamation.RotationNode;
+import io.github.lapissim.engine.aniamation.ScaleNode;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.Key;
@@ -121,8 +124,16 @@ public abstract class SceneObject {
     {
         MoveNode m = moveKeyframes.get(0);
 
-        m.progress += Time.deltaTime;
+        m.progress += 0.2 * Time.deltaTime;
         m.progress = Math.max(0, Math.min(m.time, m.progress)); //clamps the thingy
+        float t = (m.progress / m.time );
+
+        if(t >= 1)
+            t = 1;
+
+        System.out.println("x: " + x);
+
+        System.out.println(t);
 
         switch (m.style){
             case none:
@@ -132,7 +143,7 @@ public abstract class SceneObject {
             case lerp: {
                 Vector2 v = new Vector2(x, y);
 
-                v.lerp(m.destination, m.progress);
+                v.lerp(m.destination, t);
 
                 x = (int) v.x;
                 y = (int) v.y;
@@ -141,7 +152,7 @@ public abstract class SceneObject {
             case linear: {
                 Vector2 v = new Vector2(x, y);
 
-                v.interpolate(m.destination, m.progress, Interpolation.linear);
+                v.interpolate(m.destination, t, Interpolation.linear);
 
                 x = (int) v.x;
                 y = (int) v.y;
@@ -149,8 +160,12 @@ public abstract class SceneObject {
             }
         }
 
+        if(t >= .14f)
+            m.progress = m.time;
+
         if(m.progress >= m.time){
             moveKeyframes.remove(0);
+            initMoveKeyframe();
             return;
         }
 
@@ -189,49 +204,33 @@ public abstract class SceneObject {
         batch.draw(texture, getX(),y, 1,1, dir*width, height, scaleX,scaleY,rotation);
 
     }
-}
 
-abstract class AnimationNode
-{
-    float time;
-    float progress;
-    TransformStyle style;
+    public void addMoveKeyframe(MoveNode moveNode) {
+        if(moveKeyframes == null)
+            moveKeyframes = new ArrayList<>();
 
-    public AnimationNode(float time, TransformStyle style){
-        this.time = time;
-        this.style = style;
+        moveKeyframes.add(moveNode);
+        initMoveKeyframe();
     }
-}
 
-class MoveNode extends AnimationNode{
-    Vector2 destination;
+    private void initMoveKeyframe(){
+        if(moveKeyframes.size() != 1)
+            return;
+        MoveNode keyFrame = moveKeyframes.get(0);
 
-    public MoveNode(float time, TransformStyle style) {
-        super(time, style);
+        keyFrame.start = new Vector2(x,y);
 
+        if(!keyFrame.additive)
+            return;
+
+        keyFrame.destination = new Vector2(x + keyFrame.destination.x, y + keyFrame.destination.y );
     }
+
 }
 
-class ScaleNode extends AnimationNode{
-    float newScale;
 
-    public ScaleNode(float scale, float time, TransformStyle style) {
-        super(time, style);
-        newScale = scale;
-    }
-}
 
-class RotationNode extends AnimationNode{
-    float degrees;
 
-    public RotationNode(float degrees, float time, TransformStyle style) {
-        super(time, style);
-        this.degrees = degrees;
-    }
-}
 
-enum TransformStyle{
-    none,
-    lerp,
-    linear
-}
+
+

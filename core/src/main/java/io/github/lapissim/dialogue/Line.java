@@ -31,5 +31,5 @@ public class Line
 
     public String value;
     public String flag;
-
+    public float time;
 }

@@ -21,12 +21,17 @@ START:
   dia "wow! its playboi carti!" "steven" "happy"
   dia "who?" "lapis" "tired"
   dia "kys" "steven" "mad"
-  visible carti false
+  linear 5
+  translate carti 0 700
+
   dia "Hey, steven" "lapis" "neutral"
   dia "i didnt appreciate how you talked to me there" "lapis" "neutral"
-  dia "im going to trap you in a time loop" "lapis" "neutral"
-  linear
-  position lapis 0 -500
+  dia "i think im gonna LEAVE" "lapis" "neutral"
+  dir lapis -1
+  retain
+  linear 2
+  translate lapis -400 0
+  dia "lapis wait" steven neutral
   END
 
 OTHER:

@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/Time.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/aniamation/AnimationNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/aniamation/MoveNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/aniamation/RotationNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/aniamation/ScaleNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/aniamation/TransformStyle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/dialogue/test/test.dd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/dialogue/test/test.dd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/LineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/LineType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/Line.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/Font.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,9 +111,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="package-info" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -139,7 +139,7 @@
     <hideBySeverity>
       <option value="300" />
     </hideBySeverity>
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2lL6jUi2tqjo0IvtpPYgQ1nfHa1" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -337,8 +337,34 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java</url>
-          <line>307</line>
-          <option name="timeStamp" value="58" />
+          <line>326</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java</url>
+          <line>327</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="moveKeyframes.size() == 1" language="JAVA" />
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="66" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
@@ -358,7 +384,11 @@
       <configuration name="GradleRunConfiguration">
         <watch expression="c" />
         <watch expression="displayBuilder" language="JAVA" />
+        <watch expression="lines" language="JAVA" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lapis_sim$lapis_sim__run_.ic" NAME="lapis-sim [run] Coverage Results" MODIFIED="1726120564830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
