@@ -33,7 +33,6 @@ public class Scene {
     }
 
 
-
     public void draw(SpriteBatch batch)
     {
         //draw (TextureRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation)
@@ -110,5 +109,9 @@ public class Scene {
         }
         newl[objects.length] = obj;
         objects = newl;
+    }
+
+    public void exit(){
+
     }
 }

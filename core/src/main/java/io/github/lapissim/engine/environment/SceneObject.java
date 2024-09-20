@@ -227,10 +227,3 @@ public abstract class SceneObject {
     }
 
 }
-
-
-
-
-
-
-

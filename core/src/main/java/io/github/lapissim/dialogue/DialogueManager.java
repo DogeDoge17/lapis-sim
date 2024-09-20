@@ -385,7 +385,7 @@ public class DialogueManager
         charPrintTimer -= Time.deltaTime * 1000;
         skipTimer -= Time.deltaTime * 1000;
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || Gdx.input.justTouched())
         {
             NextDialogue();
         }
@@ -433,9 +433,6 @@ public class DialogueManager
                 charPrintTimer = printSpeed;
             }
     }
-
-
-
     public static void drawDialogue(SpriteBatch batch)
     {
         if(!visible)
