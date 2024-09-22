@@ -2,6 +2,7 @@ package io.github.lapissim.engine.environment;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -108,7 +109,7 @@ public abstract class SceneObject {
         hovering = hoveringOver(Main.mouseRec);
 
         if(hovering && visible){
-            if(Gdx.input.justTouched()){
+            if(io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.LEFT)){
                 onClick();
                 System.out.println("pressed");
             }
@@ -124,7 +125,7 @@ public abstract class SceneObject {
     {
         MoveNode m = moveKeyframes.get(0);
 
-        m.progress += 0.2 * Time.deltaTime;
+        m.progress += 0.2 * Time.gameTime;
         m.progress = Math.max(0, Math.min(m.time, m.progress)); //clamps the thingy
         float t = (m.progress / m.time );
 

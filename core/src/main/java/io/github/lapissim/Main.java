@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.github.lapissim.dialogue.DialogueManager;
+import io.github.lapissim.dialogue.Log;
 import io.github.lapissim.engine.Input;
 import io.github.lapissim.engine.Time;
 import io.github.lapissim.engine.environment.SceneManager;
@@ -65,6 +66,8 @@ public class Main extends ApplicationAdapter {
         //SceneManager.loadNewScene(new FunlandArcadeP(new SceneObject[]{new LapisP("Lapis", "neutral", 200, 109),new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140), new Speaker("Carti", "Playboi Carti", "neutral",SCREENWIDTH/2, 140), new Doorway(new BigDonutP(),Speaker.RightAnchor, 100,)}));
         Font.cacheFont(new Font("Comic Sans MS"));
 
+        Input.setupMouse();
+
         defaultShader = SpriteBatch.createDefaultShader();
         outlineShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/outline.frag").readString());
 
@@ -84,12 +87,12 @@ public class Main extends ApplicationAdapter {
         }
         Time.update();
 
-        Vector3 screenCoords = viewport.unproject( new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        Vector3 screenCoords = viewport.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         mouseRec = new Rectangle(screenCoords.x, screenCoords.y, 9, 9);
-
 
         SceneManager.updateActive();
         DialogueManager.updateDialogue();
+        Log.update();
 
         Input.lateUpdate();
     }
@@ -104,12 +107,13 @@ public class Main extends ApplicationAdapter {
         batch.draw(whitesSqr, mouseRec.x, mouseRec.y, mouseRec.width, mouseRec.height);
         //batch.draw(image, 140, 210, image.getWidth(), image.getHeight());
 
-        TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"),  Integer.toString(Math.round(Time.fps)),0,0,8, Color.WHITE);
     }
 
     private void postRender()
     {
         SceneManager.drawTransition(batch);
+        Log.render(batch);
+        TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"),  Integer.toString(Math.round(Time.fps)),0,0,8, Color.WHITE);
 
         batch.end();
     }

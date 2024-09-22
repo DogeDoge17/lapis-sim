@@ -1,5 +1,5 @@
 START:
-
+  Dia "You take my tractor you take your car i take my board im going surfing you take your car to work ill take my board and when youre out of fuel im still afloat" "Steven" "happy"
   DIA "Welcome to the lapis simulator!" "Steven" "happy"
   DIA "flip my chud life" "Lapis" "neutral"
   DIA "what" "Steven" "neutral"
@@ -33,7 +33,7 @@ START:
   translate lapis -400 0
   dia "lapis wait" steven neutral
   END
-
+DIA "nigga" carti neutral
 OTHER:
     DIA "woaw! you found the secret." "Steven" "happy"
     RET

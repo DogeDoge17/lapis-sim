@@ -1,4 +1,4 @@
-package io.github.lapissim.engine.environment;
+package io.github.lapissim.engine;
 
 public class Tuple<X, Y> {
     public final X first;

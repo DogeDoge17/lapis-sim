@@ -45,7 +45,7 @@ public class DialogueManager
     private static float charPrintTimer = 0;
 
     private final static float skipInterval = 75;
-    private static float skipTimer = 0;
+    private static float  skipTimer = 0;
 
     private final static float autoInterval = 1.5f;
     private static float autoTimer = autoInterval;
@@ -55,6 +55,7 @@ public class DialogueManager
 
     private static TransformStyle transformStyle = TransformStyle.none;
     private static float transformTime = 0f;
+
 
     private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
     public static void beginDialogue(String path)
@@ -285,10 +286,11 @@ public class DialogueManager
                 case DIA:
                     displayPtr = 0;
                     displayBuilder = new StringBuilder(line.contents.length() +6);
+                    Log.logList.add(line);
                     return;
                 case END:
                     EndDialogue();
-                    break;
+                    return;
                 case VISIBLE:
                     SceneManager.activeScene.getSpeaker(line.speakerId).setVisibility(line.visible);
                     break;
@@ -341,6 +343,9 @@ public class DialogueManager
 
     public static void EndDialogue(){
         visible = false;
+        f1 = true;
+        retaining = false;
+        charPrintTimer = 0;
         stack = new ArrayList<>();
     }
 
@@ -378,33 +383,34 @@ public class DialogueManager
         return true;
     }
 
+
+    static boolean f1 = true;
     public static void updateDialogue(){
-        if(!visible)
+        if(!visible || Log.open)
             return;
 
-        charPrintTimer -= Time.deltaTime * 1000;
-        skipTimer -= Time.deltaTime * 1000;
+        charPrintTimer -= Time.gameTime * 1000;
+        skipTimer -= Time.gameTime * 1000;
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || Gdx.input.justTouched())
+        if(!f1 && (Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.LEFT)))
         {
             NextDialogue();
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && skipTimer <= 0)
+        if((Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || io.github.lapissim.engine.Input.getMouse(Input.Buttons.FORWARD))&& skipTimer <= 0)
         {
             NextDialogue();
             skipTimer = skipInterval;
         }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C) || io.github.lapissim.engine.Input.getKeyDown(Input.Buttons.MIDDLE))
         {
             auto = !auto;
         }
 
-
         if(auto){
-            autoDots -= Time.deltaTime;
-            autoTimer -= Time.deltaTime;
+            autoDots -= Time.gameTime;
+            autoTimer -= Time.gameTime;
             if(autoDots <= 0)
             {
                 autoDotsCount++;
@@ -427,11 +433,12 @@ public class DialogueManager
 
         Line line = getLine();
         if(line != null)
-
-            if(line != null && (charPrintTimer <= 0 && displayPtr < line.contents.length())){
-                addChar(line);
-                charPrintTimer = printSpeed;
-            }
+            if(line.lineType == LineType.DIA)
+                if(charPrintTimer <= 0 && displayPtr < line.contents.length()){
+                    addChar(line);
+                    charPrintTimer = printSpeed;
+                }
+        f1 = false;
     }
     public static void drawDialogue(SpriteBatch batch)
     {

@@ -10,7 +10,7 @@ public class SceneManager {
     public static Scene activeScene;
     private static Scene sceneQueue;
     private static  float transitionA;
-    private static boolean transitioning = false;
+    public static boolean transitioning = false;
     private static int dir = 1;
 
     public static void setActiveScene(Scene scene){
@@ -67,7 +67,15 @@ public class SceneManager {
     public static void drawTransition(SpriteBatch batch){
 
         if(transitioning){
-            transitionA += dir *2* Time.deltaTime;
+
+            if(Time.gameTime == 0){
+                transitioning = false;
+                loadNewScene(sceneQueue, false);
+                transitionA =0;
+                sceneQueue = null;
+            }
+
+            transitionA += dir *3* Time.gameTime;
             if(transitionA > 1)
             {
                 dir = -1;

@@ -4,6 +4,10 @@ import com.badlogic.gdx.Gdx;
 
 public class Time {
     public static float deltaTime = 0.16f;
+    public static float gameTime = 0.16f;
+
+    private static float gameTimeMulitpler = 1;
+
     public static long frames;
 
     static long last_time = System.currentTimeMillis();
@@ -14,11 +18,16 @@ public class Time {
     static public float m_refreshTime = 0.5f;
 
 
+    public static void setGTMulitplier(float multiplier){
+        gameTimeMulitpler = multiplier;
+    }
+
     public static void update(){
 
         long time = System.currentTimeMillis();
         //deltaTime = (time - last_time) * 100000000000L;
         deltaTime = (time - last_time) /1000f;
+        gameTime = deltaTime * gameTimeMulitpler;
         last_time = time;
 
         if( m_timeCounter < m_refreshTime )
