@@ -1,4 +1,4 @@
-package io.github.lapissim.engine.aniamation;
+package io.github.lapissim.engine.animation;
 
 public enum TransformStyle{
     none,

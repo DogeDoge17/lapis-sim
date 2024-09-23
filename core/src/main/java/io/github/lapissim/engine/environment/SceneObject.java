@@ -1,8 +1,6 @@
 package io.github.lapissim.engine.environment;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,16 +10,13 @@ import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
 import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.engine.Time;
-import io.github.lapissim.engine.aniamation.MoveNode;
-import io.github.lapissim.engine.aniamation.RotationNode;
-import io.github.lapissim.engine.aniamation.ScaleNode;
+import io.github.lapissim.engine.animation.MoveNode;
+import io.github.lapissim.engine.animation.RotationNode;
+import io.github.lapissim.engine.animation.ScaleNode;
 import io.github.lapissim.engine.permissions.PermissionManager;
 import io.github.lapissim.engine.permissions.Systems;
 
-import java.lang.reflect.InvocationTargetException;
-import java.security.Key;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public abstract class SceneObject {
     protected String id;
