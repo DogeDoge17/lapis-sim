@@ -57,10 +57,6 @@ public enum LineType
      */
     DIR,
     /**
-     * Takes in one argument: Label. Sets the pointer line pointer to the desired label.
-     */
-    JMP,
-    /**
      * Takes in no arguments. Ends the dialogue once reached.
      */
     END,
@@ -69,15 +65,19 @@ public enum LineType
      */
     VISIBLE,
     /**
-     * Takes in two arguments: Flag name, Flag Value. Sets the global flag to have the desired value.
-     */
-    FLAG,
-    /**
      * Takes in two arguments: SpeakerID, New Name. Replaces the existing display name with the new display name provided
      */
     NAME,
     /**
-     * Takes in two arguments: Flag name, value. Compares the flag and the inline value. Typically used with either JE or JNE.
+     * Takes in one argument: Label. Sets the pointer line pointer to the desired label.
+     */
+    JMP,
+    /**
+     * Takes in two arguments: Flag name, Flag Value. Sets the global flag to have the desired value.
+     */
+    FLAG,
+    /**
+     * Takes in two arguments: Flag name, value. Compares the flag and the inline value. Typically used with either JE or any other comparison jumps.
      */
     CMP,
     /**

@@ -15,6 +15,8 @@ import io.github.lapissim.engine.Time;
 import io.github.lapissim.engine.aniamation.MoveNode;
 import io.github.lapissim.engine.aniamation.RotationNode;
 import io.github.lapissim.engine.aniamation.ScaleNode;
+import io.github.lapissim.engine.permissions.PermissionManager;
+import io.github.lapissim.engine.permissions.Systems;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.Key;
@@ -108,10 +110,10 @@ public abstract class SceneObject {
     public void update(){
         hovering = hoveringOver(Main.mouseRec);
 
-        if(hovering && visible){
+        if(hovering && visible && PermissionManager.checkPermissions(Systems.SCENEOBJECTCLICK)){
             if(io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.LEFT)){
                 onClick();
-                System.out.println("pressed");
+                //System.out.println("pressed");
             }
         }
 
@@ -132,9 +134,9 @@ public abstract class SceneObject {
         if(t >= 1)
             t = 1;
 
-        System.out.println("x: " + x);
+        //System.out.println("x: " + x);
 
-        System.out.println(t);
+        //System.out.println(t);
 
         switch (m.style){
             case none:

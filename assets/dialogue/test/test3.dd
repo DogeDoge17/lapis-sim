@@ -1,4 +1,25 @@
-dia "WHERE DID CARTI GO" steven mad
-dia "steven i still dont know who that is" lapis neutral
-dia "and im still mad at you for not knowing" steven neutral
+cmp "lapisTestArcadeLeave" 1
+je lapisL
+
+dia "We need to find carti, lapis!" steven mad
+dia "steven i still don't know who that is" lapis neutral
+dia "Ugh lapis" steven neutral
+dia "he's only the coolest rapper in the whole wide world ever" steven neutral
+dia "that's great steven" lapis neutral
+dia "uh" steven neutral
+dia "we should start looking around!" steven neutral
 end
+
+lapisL:
+  dia "Wait lapis please come back!" "Steven" "neutral"
+  dia "No, Steven, you were mean" "Lapis" "neutral"
+  dia "Pleeeaaseeeee" "Steven" "happy"
+  dia ". . ." "lapis" "neutral"
+  dia "Fine steven" "lapis" neutral"
+  linear 2
+  position "lapis" 200 109
+  dir lapis 1
+  dia "Thank you!" "steven" "happy"
+  FLAG "lapisTestArcadeLeave" 0
+  dia "Anyway" "steven" neutral
+  ret

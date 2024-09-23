@@ -12,8 +12,12 @@ import io.github.lapissim.engine.aniamation.MoveNode;
 import io.github.lapissim.engine.aniamation.TransformStyle;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.Speaker;
+import io.github.lapissim.engine.permissions.PermissionManager;
+import io.github.lapissim.engine.permissions.Systems;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
+import io.github.lapissim.engine.save.Flags;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -32,7 +36,7 @@ public class DialogueManager
     public static HashMap<String, Integer> labels;
 
     private static ArrayList<Integer> stack = new ArrayList<>();
-    private static int compareValue;
+    private static Line comparisonLine;
     private static boolean retaining = false;
 
     private static Texture nameplate;
@@ -56,8 +60,8 @@ public class DialogueManager
     private static TransformStyle transformStyle = TransformStyle.none;
     private static float transformTime = 0f;
 
-
     private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
+
     public static void beginDialogue(String path)
     {
         if(nameplate == null || neNameplatePas == null){
@@ -265,12 +269,14 @@ public class DialogueManager
 
     public static void NextDialogue()
     {
-        Line l = getLine();
-        if(l != null) {
-            if (displayPtr < l.contents.length()-1){
-                while(addChar(l));
-                skipTimer = 0;
-                return;
+        {
+            Line l = getLine();
+            if (l != null) {
+                if (displayPtr < l.contents.length() - 1) {
+                    while (addChar(l)) ;
+                    skipTimer = 0;
+                    return;
+                }
             }
         }
 
@@ -288,21 +294,8 @@ public class DialogueManager
                     displayBuilder = new StringBuilder(line.contents.length() +6);
                     Log.logList.add(line);
                     return;
-                case END:
-                    EndDialogue();
-                    return;
-                case VISIBLE:
-                    SceneManager.activeScene.getSpeaker(line.speakerId).setVisibility(line.visible);
-                    break;
-                case DIR:
-                    SceneManager.activeScene.getSpeaker(line.speakerId).dir = line.flipDirection;
-                    break;
-                case JMP:
-                    stack.add(linePointer);
-                    linePointer = labels.get(line.destination);
-                    break;
                 case RETURN:
-                    linePointer = stack.get(stack.size()-1) +1;
+                    linePointer = stack.get(stack.size()-1);
                     stack.remove(stack.size()-1);
                     break;
                 case RETAIN:
@@ -335,10 +328,71 @@ public class DialogueManager
                         transformTime = 0;
                     }
                     break;
+                case DIR:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).dir = line.flipDirection;
+                    break;
+                case END:
+                    EndDialogue();
+                    return;
+                case VISIBLE:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).setVisibility(line.visible);
+                    break;
+                case NAME:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).displayName = line.value;
+                    break;
+                case JMP:
+                    jump(line);
+                    break;
+                case FLAG:
+                    Flags.flags.trySetFlag(line.flag, line.value);
+                    break;
+                case CMP:
+                    comparisonLine = line;
+                    break;
+                case JE:
+                    if(comparisonLine != null)
+                        if(Flags.flags.getFlag(comparisonLine.flag).equals(Flags.convertString(comparisonLine.value))) {
+                            jump(line);
+                        }
+                    break;
+                case JNE:
+                    if(comparisonLine != null)
+                        if(!Flags.flags.getFlag(comparisonLine.flag).equals(Flags.convertString(comparisonLine.value))) {
+                            jump(line);
+                        }
+                    break;
+                case JGE:
+                    if(comparisonLine != null)
+                        try {
+                            if (Flags.flags.getDouble(comparisonLine.flag) >= Double.parseDouble(comparisonLine.value))
+                            {
+                                jump(line);
+                            }
+                        }
+                        catch (Exception ex){}
+                    break;
+                case JLE:
+                    if(comparisonLine != null)
+                        try {
+                            if (Flags.flags.getDouble(comparisonLine.flag) <= Double.parseDouble(comparisonLine.value))
+                            {
+                                jump(line);
+                            }
+                        }
+                        catch (Exception ex){}
+                    break;
                 default:
                     continue;
             }
         }
+    }
+
+    private static void jump(Line line){
+        stack.add(linePointer);
+        if(labels.containsKey(line.destination))
+            linePointer = labels.get(line.destination);
+        else
+            System.out.println("\033[0;31mFAILED TO FIND LABEL " + line.destination + "\033[0m");
     }
 
     public static void EndDialogue(){
@@ -346,6 +400,7 @@ public class DialogueManager
         f1 = true;
         retaining = false;
         charPrintTimer = 0;
+        comparisonLine = null;
         stack = new ArrayList<>();
     }
 
@@ -386,31 +441,30 @@ public class DialogueManager
 
     static boolean f1 = true;
     public static void updateDialogue(){
-        if(!visible || Log.open)
+        if(!visible || Log.open || !PermissionManager.checkPermissions(Systems.DIALOGUE))
             return;
 
         charPrintTimer -= Time.gameTime * 1000;
         skipTimer -= Time.gameTime * 1000;
 
-        if(!f1 && (Gdx.input.isKeyJustPressed(Input.Keys.Z) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.LEFT)))
+        if(PermissionManager.checkPermissions(Systems.DIALOGUEINPUT))
         {
-            NextDialogue();
-        }
+            if (!f1 && (io.github.lapissim.engine.Input.getKeyDown(Input.Keys.Z) || io.github.lapissim.engine.Input.getKeyDown(Input.Keys.SPACE) || io.github.lapissim.engine.Input.getKeyDown(Input.Keys.ENTER) || io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.LEFT))) {
+                NextDialogue();
+            }
 
-        if((Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || io.github.lapissim.engine.Input.getMouse(Input.Buttons.FORWARD))&& skipTimer <= 0)
-        {
-            NextDialogue();
-            skipTimer = skipInterval;
-        }
+            if ((io.github.lapissim.engine.Input.getKey(Input.Keys.CONTROL_LEFT) || io.github.lapissim.engine.Input.getMouse(Input.Buttons.FORWARD)) && skipTimer <= 0) {
+                NextDialogue();
+                skipTimer = skipInterval;
+            }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C) || io.github.lapissim.engine.Input.getKeyDown(Input.Buttons.MIDDLE))
-        {
-            auto = !auto;
+            if (io.github.lapissim.engine.Input.getKeyDown(Input.Keys.C) || io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.MIDDLE)) {
+                auto = !auto;
+            }
         }
 
         if(auto){
             autoDots -= Time.gameTime;
-            autoTimer -= Time.gameTime;
             if(autoDots <= 0)
             {
                 autoDotsCount++;
@@ -421,7 +475,9 @@ public class DialogueManager
             }
 
             Line l = getLine();
+            if(l != null)
             if (displayPtr >= l.contents.length()-1){
+                autoTimer -= Time.gameTime;
                 if(autoTimer <= 0){
                     autoTimer = autoInterval;
                     NextDialogue();
@@ -485,8 +541,6 @@ public class DialogueManager
 
             TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), dotBuilder.toString(), 100,15, 14, Color.GRAY);
         }
-
-
     }
 
     public static Line getLine(){
@@ -511,12 +565,13 @@ public class DialogueManager
 
         return argsList.toArray(new String[0]);
     }
-}
-class FilterEntry {
-    public final String in;
-    public final String out;
-    public FilterEntry(String in, String out){
-        this.in = in;
-        this.out = out;
+    static class FilterEntry {
+        public final String in;
+        public final String out;
+
+        public FilterEntry(String in, String out) {
+            this.in = in;
+            this.out = out;
+        }
     }
 }

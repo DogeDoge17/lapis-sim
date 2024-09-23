@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.engine.environment.SceneManager;
+import io.github.lapissim.engine.permissions.PermissionManager;
+import io.github.lapissim.engine.permissions.Systems;
 
 import java.util.Vector;
 
@@ -128,7 +130,7 @@ public class Input
     }
 
     private static boolean disableInput(){
-        return SceneManager.transitioning;
+        return !PermissionManager.checkPermissions(Systems.INPUT);
     }
 
 

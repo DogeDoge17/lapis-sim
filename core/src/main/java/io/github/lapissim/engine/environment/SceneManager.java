@@ -3,6 +3,8 @@ package io.github.lapissim.engine.environment;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.lapissim.Main;
 import io.github.lapissim.engine.Time;
+import io.github.lapissim.engine.permissions.PermissionManager;
+import io.github.lapissim.engine.permissions.Systems;
 
 import static io.github.lapissim.Main.*;
 
@@ -56,6 +58,8 @@ public class SceneManager {
             transitionA = 0.01f;
             dir = 1;
             sceneQueue = scene;
+            PermissionManager.activateWhitelist(Systems.SCENETRANSITION);
+            gameTimeZeroFrames = 0;
             return;
         }
         if(activeScene != null)
@@ -64,18 +68,28 @@ public class SceneManager {
         activeScene.start();
     }
 
+
+    static int gameTimeZeroFrames = 0;
+
     public static void drawTransition(SpriteBatch batch){
 
         if(transitioning){
 
             if(Time.gameTime == 0){
-                transitioning = false;
-                loadNewScene(sceneQueue, false);
-                transitionA =0;
-                sceneQueue = null;
+                gameTimeZeroFrames++;
+                if(gameTimeZeroFrames >= 60) {
+                    transitioning = false;
+                    loadNewScene(sceneQueue, false);
+                    transitionA = 0;
+                    sceneQueue = null;
+                    PermissionManager.deactivateWhitelist(Systems.SCENETRANSITION);
+                    gameTimeZeroFrames = 0;
+                    return;
+                }
             }
 
             transitionA += dir *3* Time.gameTime;
+            System.out.println("TRANSA: " + transitionA + " GAMETIME: " +  Time.gameTime);
             if(transitionA > 1)
             {
                 dir = -1;
@@ -83,9 +97,13 @@ public class SceneManager {
                 loadNewScene(sceneQueue, false);
                 sceneQueue = null;
             }
-            if(transitionA <= 0){
+            else if(transitionA <= 0){
                 transitionA =0;
                 transitioning = false;
+                dir = 1;
+                gameTimeZeroFrames = 0;
+                PermissionManager.deactivateWhitelist(Systems.SCENETRANSITION);
+                System.out.println("END TRANSITION");
             }
         }
 

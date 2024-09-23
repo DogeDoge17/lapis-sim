@@ -3,9 +3,12 @@ package io.github.lapissim.engine.save;
 import java.util.HashMap;
 
 public class Flags {
-    private HashMap<String, Double> numberFlags;
-    private HashMap<String, Boolean> boolFlags;
-    private HashMap<String, String> stringFlags;
+
+    public static Flags flags;
+
+    private HashMap<String, Double> numberFlags = new HashMap<>();
+    private HashMap<String, Boolean> boolFlags = new HashMap<>();
+    private HashMap<String, String> stringFlags = new HashMap<>();
 
     public Double getDouble(String flag){
         if(numberFlags.containsKey(flag)){
@@ -46,33 +49,67 @@ public class Flags {
         return null;
     }
 
-    public void setFlag(String flag, Object value){
-        if(boolFlags.containsKey(flag)) {
-            System.out.println("Flag " + flag + " already exists as a bool");
+    public void trySetFlag(String flag, String value){
+        try{
+            double val = Double.parseDouble(value);
+            numberFlags.put(flag, val);
             return;
-        }
-        else if(stringFlags.containsKey(flag))
-        {
-            System.out.println("Flag " + flag + " already exists as a string");
-            return;
-        }
-        else if(numberFlags.containsKey(flag))
-        {
-            System.out.println("Flag " + flag + " already exists as a double");
-            return;
+        }catch(Exception ex){
+
         }
 
+        try{
+            boolean val = Boolean.parseBoolean(value);
+            boolFlags.put(flag, val);
+        }catch(Exception ex){
+
+        }
+
+
+        stringFlags.put(flag, value);
+    }
+
+    public void setFlag(String flag, Object value){
         if(value instanceof Double || value instanceof Integer || value instanceof Float)
         {
-            numberFlags.putIfAbsent(flag, (Double)value);
+            numberFlags.put(flag, (Double)value);
+            return;
         }else if(value instanceof Boolean)
         {
-            boolFlags.putIfAbsent(flag, (Boolean)value);
+            boolFlags.put(flag, (Boolean)value);
+            return;
         }else if(value instanceof String) {
-            stringFlags.putIfAbsent(flag, (String) value);
+            stringFlags.put(flag, (String) value);
+            return;
         }
 
         System.out.println("Type " + value.getClass().getName() + " could not be entered in as a flag. Please only input strings numbers or booleans.");
+    }
+
+    public static Object convertString(String value){
+        try{
+            double val = Double.parseDouble(value);
+
+            return val;
+        }catch(Exception ex){
+
+        }
+
+        try{
+            boolean val = Boolean.parseBoolean(value);
+
+            return val;
+
+        }catch(Exception ex){
+
+        }
+
+       return value;
+    }
+
+    public void loadSave()
+    {
+        //Flags.flags = new Flags();
 
     }
 

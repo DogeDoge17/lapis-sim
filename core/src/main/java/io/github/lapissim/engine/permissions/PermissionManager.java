@@ -48,6 +48,10 @@ public class PermissionManager {
         {
             SCENEOBJECTCLICK,
             INPUT
+        },
+        {
+            MENUS,
+            DIALOGUE,
         }
     };
 
@@ -70,18 +74,20 @@ public class PermissionManager {
 
         //check to see if the system is active, and it isn't in its whitelist.
 
+
         for(int i  = 0; i < actives.length; i++){
             if(actives[i]){
+                boolean found = false;
                 for(int j = 0; j < whitelists[i].length; j++){
                     if(whitelists[i][j] == sys){
-                        continue;
-                    }else{
-                        return false;
+                        found = true;
+                        break;
                     }
                 }
+                if(!found)
+                    return false;
             }
         }
-
         return true;
     }
 }

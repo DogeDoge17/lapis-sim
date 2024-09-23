@@ -8,5 +8,6 @@ public class Systems {
     SCENEMANGER = 4,
     SCENETRANSITION = 5,
     DOORWAY = 6,
-    SCENEOBJECTCLICK = 7;
+    SCENEOBJECTCLICK = 7,
+    MENUS = 8;
 }

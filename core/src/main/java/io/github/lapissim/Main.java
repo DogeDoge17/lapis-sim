@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.org.apache.bcel.internal.generic.FALOAD;
 import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.dialogue.Log;
 import io.github.lapissim.engine.Input;
@@ -25,6 +26,8 @@ import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
+import io.github.lapissim.engine.save.Flags;
+import io.github.lapissim.engine.save.Save;
 import io.github.lapissim.game.prefabs.Doorway;
 import io.github.lapissim.game.scenes.prologue.scenes.BigDonutP;
 import io.github.lapissim.game.scenes.prologue.scenes.FunlandArcadeP;
@@ -61,17 +64,18 @@ public class Main extends ApplicationAdapter {
         batch = new SpriteBatch();
         //image = new Texture("libgdx.png");
         whitesSqr = new Texture("cursor.png");
-        DialogueManager.beginDialogue("test/test");
-        SceneManager.loadNewScene(new FunlandArcadeP(), false);
         //SceneManager.loadNewScene(new FunlandArcadeP(new SceneObject[]{new LapisP("Lapis", "neutral", 200, 109),new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140), new Speaker("Carti", "Playboi Carti", "neutral",SCREENWIDTH/2, 140), new Doorway(new BigDonutP(),Speaker.RightAnchor, 100,)}));
         Font.cacheFont(new Font("Comic Sans MS"));
-
         Input.setupMouse();
-
         defaultShader = SpriteBatch.createDefaultShader();
         outlineShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/outline.frag").readString());
 
+        Save.loadRecentSave();
+
     }
+
+
+
 
     @Override
     public void render() {
@@ -82,8 +86,8 @@ public class Main extends ApplicationAdapter {
 
 
     public void update() {
-        if((Input.getKey(com.badlogic.gdx.Input.Keys.ALT_RIGHT) || Input.getKey(com.badlogic.gdx.Input.Keys.ALT_LEFT)) && Input.getKeyDown(com.badlogic.gdx.Input.Keys.ENTER)){
-            toggleFullscreen(Input.getKey(com.badlogic.gdx.Input.Keys.CONTROL_RIGHT));
+        if((Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.ALT_RIGHT) || Gdx.input.isKeyPressed((com.badlogic.gdx.Input.Keys.ALT_LEFT)) && Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER))){
+            toggleFullscreen(Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.CONTROL_RIGHT));
         }
         Time.update();
 

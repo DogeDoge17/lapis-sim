@@ -31,9 +31,12 @@ START:
   retain
   linear 2
   translate lapis -400 0
+  FLAG "lapisTestArcadeLeave" 1
   dia "lapis wait" steven neutral
+  FLAG "findCarti" 0
+  CMP findCarti 0
   END
-DIA "nigga" carti neutral
+
 OTHER:
     DIA "woaw! you found the secret." "Steven" "happy"
     RET

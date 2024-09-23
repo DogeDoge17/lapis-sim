@@ -19,6 +19,7 @@ public class Log
     public static boolean open;
 
     private static float scrollAmount = 0f;
+    private static float maxScroll;
 
     public static void update(){
         if(!PermissionManager.checkPermissions(Systems.LOG))
@@ -34,7 +35,9 @@ public class Log
             PermissionManager.setWhitelists(Systems.LOG, open);
         }
 
-        scrollAmount -= Input.getScroll().y * 2000 * Time.deltaTime;
+        scrollAmount += Input.getScroll().y * 2000 * Time.deltaTime;
+        scrollAmount -= Input.getKey(com.badlogic.gdx.Input.Keys.UP) ? 7 : 0 * Time.deltaTime;
+        scrollAmount += Input.getKey(com.badlogic.gdx.Input.Keys.DOWN) ? 7 : 0 * Time.deltaTime;
     }
 
     public static void render(SpriteBatch batch){
@@ -67,9 +70,9 @@ public class Log
             batch.setColor(.5f,.5f,.5f,0.5f);
             drawOffset += 50;
             batch.draw(Main.whitesSqr, 200, drawOffset/*165 + (100*j)*/, 700, 2);
-
         }
-
+        maxScroll = drawOffset - scrollAmount;
+        scrollAmount = Math.min(maxScroll, scrollAmount);
 
     }
 }
