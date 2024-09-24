@@ -61,6 +61,8 @@ public class Doorway<T extends Scene> extends SceneObject {
         batch.draw(texture, getX(),getY(),getWidth(),getHeight());
         batch.setColor(1,1,1,1);
 
+
+        //TODO: MAKE TEXT SWAP SIDES OF MOUSE IF OFF SCREEN
         TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x, Main.mouseRec.y, 16, Color.WHITE);
 
     }

@@ -24,7 +24,7 @@ public class FunlandArcadeP extends Scene {
         addObject(new LapisP("Lapis", "neutral", 200, 109));
         addObject(new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140));
         addObject(new Speaker("Carti", "Playboi Carti", "neutral", Main.SCREENWIDTH/2, 140));
-        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+45, 100,140, 500));
+        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500));
         //TODO: test dialogue starting on scene entrance and flags
         //addObject(new Doorway(FunlandArcadeInsideP.class,"Big Donut", Speaker.RightAnchor+45, 100,140, 500));
     }
