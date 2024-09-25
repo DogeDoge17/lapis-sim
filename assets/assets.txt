@@ -3,6 +3,8 @@ backdrops/beach-city/funland-arcade-inside.png
 backdrops/beach-city/funland-arcade.png
 backdrops/beach-city/funland-gate.png
 cursor.png
+dialogue/test/bigDonutDoor.dd
+dialogue/test/sadieFind.dd
 dialogue/test/test.dd
 dialogue/test/test2.dd
 dialogue/test/test3.dd
@@ -21,6 +23,7 @@ speakers/lapis/neutral-cracked.png
 speakers/lapis/neutral.png
 speakers/lapis/tired-cracked.png
 speakers/lapis/tired.png
+speakers/sadie/neutral.png
 speakers/steven/happy.png
 speakers/steven/mad.png
 speakers/steven/neutral.png

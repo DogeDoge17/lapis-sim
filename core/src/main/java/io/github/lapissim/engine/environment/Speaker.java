@@ -19,8 +19,9 @@ public class Speaker extends SceneObject {
             return;
 
         if(!speaking && DialogueManager.visible) {
-            batch.setColor(0, 0, 0, 0.3f);
+            batch.setColor(0, 0, 0, 0.4f);
             batch.draw(texture, (x - ((dir * getWidth()) / 2)), y, 1, 1, dir * width, height, scaleX, scaleY, 0);
+
             batch.setColor(1, 1, 1, 1);
         }
     }

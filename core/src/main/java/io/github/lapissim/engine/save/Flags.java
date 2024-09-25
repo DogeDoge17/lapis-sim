@@ -11,42 +11,30 @@ public class Flags {
     private HashMap<String, String> stringFlags = new HashMap<>();
 
     public Double getDouble(String flag){
-        if(numberFlags.containsKey(flag)){
-            return numberFlags.getOrDefault(flag,0.0);
-        }
-        System.out.println("Could not find a flag with the name: " + flag);
-        return 0.0;
+        return numberFlags.getOrDefault(flag,0.0);
     }
 
     public Boolean getBool(String flag){
-        if(boolFlags.containsKey(flag)){
-            return boolFlags.getOrDefault(flag,false);
-        }
-        System.out.println("Could not find a flag with the name: " + flag);
+        //if(boolFlags.containsKey(flag)){
+        //}
+        return boolFlags.getOrDefault(flag,false);
+        //System.out.println("Could not find a flag with the name: " + flag);
 
-        return false;
+        //return false;
     }
 
     public String getString(String flag){
-        if(stringFlags.containsKey(flag)){
-            return stringFlags.getOrDefault(flag,"");
-        }
-        System.out.println("Could not find a flag with the name: " + flag);
-
-        return "";
+        return stringFlags.getOrDefault(flag,"");
     }
 
     public Object getFlag(String flag)
     {
         if(boolFlags.containsKey(flag))
             return boolFlags.getOrDefault(flag,false);
-        else if(stringFlags.containsKey(flag))
-            return stringFlags.getOrDefault(flag,"");
         else if(numberFlags.containsKey(flag))
             return numberFlags.getOrDefault(flag,0.0);
 
-        System.out.println("Could not find a flag with the name: " + flag);
-        return null;
+        return stringFlags.getOrDefault(flag,"");
     }
 
     public void trySetFlag(String flag, String value){
@@ -69,18 +57,32 @@ public class Flags {
         stringFlags.put(flag, value);
     }
 
+    public void setDouble(String flag, double value){
+        numberFlags.put(flag, value);
+    }
+
     public void setFlag(String flag, Object value){
-        if(value instanceof Double || value instanceof Integer || value instanceof Float)
+        if(value instanceof Double)
         {
             numberFlags.put(flag, (Double)value);
             return;
-        }else if(value instanceof Boolean)
+        } else if (value instanceof Integer) {
+            numberFlags.put(flag, ((Integer) value).doubleValue());
+        }
+        else if ( value instanceof Float) {
+            numberFlags.put(flag, ((Float) value).doubleValue());
+        }
+        else if(value instanceof Boolean)
         {
             boolFlags.put(flag, (Boolean)value);
             return;
         }else if(value instanceof String) {
             stringFlags.put(flag, (String) value);
             return;
+        }
+
+        else if ( value instanceof Float) {
+            numberFlags.put(flag, ((Float) value).doubleValue());
         }
 
         System.out.println("Type " + value.getClass().getName() + " could not be entered in as a flag. Please only input strings numbers or booleans.");

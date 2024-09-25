@@ -17,6 +17,7 @@ import io.github.lapissim.engine.permissions.PermissionManager;
 import io.github.lapissim.engine.permissions.Systems;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class SceneObject {
     protected String id;
@@ -28,6 +29,8 @@ public abstract class SceneObject {
 
     public String emotion;
 
+    private HashMap<String, TextureRegion> spriteArchive = new HashMap<>();
+
     public boolean visible = true;
 
     public boolean hovering;
@@ -36,6 +39,8 @@ public abstract class SceneObject {
     ArrayList<MoveNode> moveKeyframes = new ArrayList<>();
     ArrayList<ScaleNode> scaleKeyframes = new ArrayList<>();
     ArrayList<RotationNode> rotationKeyframes = new ArrayList<>();
+
+    public boolean centred = true;
 
 
     public SceneObject(String id, String displayName, String emotion, int x, int y){
@@ -68,9 +73,20 @@ public abstract class SceneObject {
         texture = new TextureRegion(new Texture("speakers/"+id+"/"+emotion + ".png"));
     }
 
-    public void setEmotion(String emo){
-        texture = new TextureRegion(new Texture("speakers/"+id+"/"+  emo + ".png"));
-        this.emotion = emotion;
+    public void setEmotion(String emo)
+    {
+        if(emo == emotion)
+            return;
+
+        if(!spriteArchive.containsKey(emo)) {
+            texture = new TextureRegion(new Texture("speakers/" + id + "/" + emo + ".png"));
+            spriteArchive.put(emo, texture);
+            this.emotion = emo;
+            return;
+        }
+
+        texture = spriteArchive.get(emo);
+        this.emotion = emo;
     }
 
     public void setVisibility(boolean val){
@@ -94,12 +110,14 @@ public abstract class SceneObject {
         return x-(getWidth()/2);
     }
 
+    public float getRawX(){return x;}
+
     public float getY(){
         return y;
     }
 
     private boolean hoveringOver(Rectangle m){
-        return (getX2() < m.x + m.width && getX2() + getWidth() > m.x && getY() < m.y + m.height && getY() + getHeight() > m.y) && !DialogueManager.visible;
+        return centred ? (getX2() < m.x + m.width && getX2() + getWidth() > m.x && getY() < m.y + m.height && getY() + getHeight() > m.y) && !DialogueManager.visible : (getRawX() < m.x + m.width && getRawX() + getWidth()*dir > m.x && getY() < m.y + m.height && getY() + getHeight() > m.y) && !DialogueManager.visible ;
     }
 
     public void update(){
@@ -199,7 +217,12 @@ public abstract class SceneObject {
         }
         batch.setShader(Main.defaultShader);
         batch.setColor(1,1,1,1);
-        batch.draw(texture, getX(),y, 1,1, dir*width, height, scaleX,scaleY,rotation);
+        if(centred)
+            batch.draw(texture, getX(),y, 0,0, dir*width, height, scaleX,scaleY,rotation);
+        else{
+            batch.draw(texture, x,y, 0,0, dir*width, height, scaleX,scaleY,rotation);
+        }
+
 
     }
 

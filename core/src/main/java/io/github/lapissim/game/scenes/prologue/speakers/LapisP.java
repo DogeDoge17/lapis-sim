@@ -20,6 +20,9 @@ public class LapisP extends Speaker {
             case "Big Donut":
                 DialogueManager.beginDialogue("test/test5");
                 break;
+            case "Funland Arcade Inside":
+                DialogueManager.beginDialogue("test/sadieFind");
+                break;
         }
     }
 

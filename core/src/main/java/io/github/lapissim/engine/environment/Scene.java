@@ -46,6 +46,10 @@ public class Scene {
         batch.setColor(1,1,1,1);
     }
 
+    public void postDraw(SpriteBatch batch){
+
+    }
+
     public void update()
     {
         for(int i = 0; i < objects.length; i++){

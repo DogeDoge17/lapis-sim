@@ -52,6 +52,7 @@ public class Main extends ApplicationAdapter {
     public static Texture whitesSqr;
 
     public static ShaderProgram outlineShader;
+    //public static ShaderProgram textBorderShader;
     public static ShaderProgram defaultShader;
 
     OrthographicCamera camera = new OrthographicCamera();
@@ -70,11 +71,11 @@ public class Main extends ApplicationAdapter {
         defaultShader = SpriteBatch.createDefaultShader();
         outlineShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/outline.frag").readString());
 
+        //textBorderShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/textBorder.frag").readString());
+
         Save.loadRecentSave();
 
     }
-
-
 
 
     @Override
@@ -102,7 +103,7 @@ public class Main extends ApplicationAdapter {
     }
 
     public void realRender() {
-        ScreenUtils.clear(0.576470588f, 0.8f, 0.917647059f, 1f);
+        ScreenUtils.clear(0,0,0, 1f);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         SceneManager.drawActive(batch);
@@ -115,6 +116,10 @@ public class Main extends ApplicationAdapter {
 
     private void postRender()
     {
+        // TextRenderer.setBorder();
+        // TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"),  "hi",50,70,256, Color.WHITE);
+
+        SceneManager.activeScene.postDraw(batch);
         SceneManager.drawTransition(batch);
         Log.render(batch);
         TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"),  Integer.toString(Math.round(Time.fps)),0,0,8, Color.WHITE);

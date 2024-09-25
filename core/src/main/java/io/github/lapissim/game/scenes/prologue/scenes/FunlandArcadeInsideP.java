@@ -6,40 +6,34 @@ import io.github.lapissim.engine.environment.Scene;
 import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
-import io.github.lapissim.engine.save.Flags;
 import io.github.lapissim.game.prefabs.Doorway;
 import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
 import io.github.lapissim.game.scenes.prologue.speakers.SadieP;
 import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
 
-public class FunlandArcadeP extends Scene {
+public class FunlandArcadeInsideP extends Scene {
 
     Font sans;
 
-    public FunlandArcadeP(SceneObject[] objs) {
-        super("Funland Arcade", "beach-city/funland-arcade", objs);
+    public FunlandArcadeInsideP(SceneObject[] objs) {
+        super("Funland Arcade Inside", "beach-city/funland-arcade-inside", objs);
     }
 
-    public FunlandArcadeP()
+    public FunlandArcadeInsideP()
     {
-        super("Funland Arcade", "beach-city/funland-arcade");
-        addObject(new LapisP("Lapis", "neutral", 200, 109));
-        addObject(new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140));
-        addObject(new Speaker("Carti", "Playboi Carti", "neutral", Main.SCREENWIDTH/2, 140));
-        addObject(new SadieP("neutral", Main.SCREENWIDTH/2, 140) {{
-            this.setVisibility(Flags.flags.getDouble("findCarti") > 3);
-        }});
-        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500){ { centred = true;}});
+        super("Funland Arcade Inside", "beach-city/funland-arcade-inside");
+        addObject(new LapisP("Lapis", "neutral", 200, 109)) ;
+        addObject(new StevenP( "Steven", "happy", 500, 140) {{dir = -1;}});
+        addObject(new SadieP("neutral",  Main.SCREENWIDTH +300, 100));
+        addObject(new Doorway(FunlandArcadeP.class, "Leave Arcade", 40, 0, Main.SCREENWIDTH-80, 100) { { centred = false;}});
         //TODO: test dialogue starting on scene entrance and flags
-        if(Flags.flags.getDouble("findCarti") >= 3)
-            addObject(new Doorway(FunlandArcadeInsideP.class,"Enter Arcade", Main.SCREENWIDTH/2-55, 215,300, 185){ { centred = true;}} );
+        //addObject(new Doorway(FunlandArcadeInsideP.class,"Enter Arcade", Speaker.RightAnchor+45, 100,140, 500));
     }
 
 
     @Override
     public void start(){
         getObject("steven").dir = -1;
-        getSpeaker("Carti").setVisibility(false);
     }
 
     int lapisTexture = 0;

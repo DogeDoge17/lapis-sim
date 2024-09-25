@@ -1,15 +1,19 @@
 package io.github.lapissim.engine.render;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import io.github.lapissim.dialogue.Line;
+import io.github.lapissim.Main;
 
 public class TextRenderer
 {
     private static boolean wrap = false;
     private static int width = 0;
+
+    /*private static boolean border = false;
+    private static float borderSize = 0;
+    private static Color borderColour = Color.BLACK;*/
 
     public static void enableWrapping(int width)
     {
@@ -110,13 +114,26 @@ public class TextRenderer
             //int foo = (int)Math.floor(prevRec.x/fn.defaultSize);
             charOffset += (prevRec.width - prevRec.x) * fontPercent;
 
-            //(TextureRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation)
+
+
             batch.draw(fn.atlas, charOffset, y+lineOffset, 0,0, fn.atlas.getRegionWidth(), fn.atlas.getRegionHeight(), fontPercent, fontPercent, 0);
             prevRec = rec;
             //lC = c;
         }
+        //batch.setShader(Main.defaultShader);
         batch.setColor(1,1,1,1);
         maxCharOffset = Math.max(maxCharOffset,charOffset);
+        //border = false;
         return new Vector2(maxCharOffset, lineOffset);
     }
+
+    /*public static void setBorder(){
+        setBorder(1.4f, Color.BLACK);
+    }
+
+    public static void setBorder(float borderSize, Color color){
+        border = true;
+        TextRenderer.borderSize = borderSize;
+        borderColour = color;
+    }*/
 }

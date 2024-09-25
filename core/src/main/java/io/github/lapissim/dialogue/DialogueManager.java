@@ -62,17 +62,13 @@ public class DialogueManager
 
     private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
 
-    public static void beginDialogue(String path)
+    public static void beginInlineDialogue(String rawDialogue)
     {
         if(nameplate == null || neNameplatePas == null){
             nameplate = new Texture("ui/dialogue-box-nameplate.png");
             neNameplatePas = new Texture("ui/dialogue-box.png");
         }
 
-        {
-            FileHandle hi = Gdx.files.internal("dialogue/" + path + ".dd");
-            rawDialogue = hi.readString();
-        }
         String[] unFilteredLines = rawDialogue.split("\n");
         rawLines = new String[unFilteredLines.length];
         labels = new HashMap<>();
@@ -265,6 +261,12 @@ public class DialogueManager
         }
         linePointer = -1;
         NextDialogue();
+    }
+
+    public static void beginDialogue(String path)
+    {
+        FileHandle hi = Gdx.files.internal("dialogue/" + path + ".dd");
+        beginInlineDialogue(hi.readString());
     }
 
     public static void NextDialogue()
@@ -476,15 +478,15 @@ public class DialogueManager
 
             Line l = getLine();
             if(l != null)
-            if (displayPtr >= l.contents.length()-1){
-                autoTimer -= Time.gameTime;
-                if(autoTimer <= 0){
-                    autoTimer = autoInterval;
-                    NextDialogue();
-                    return;
+                if(l.contents != null)
+                    if (displayPtr >= l.contents.length()-1){
+                        autoTimer -= Time.gameTime;
+                        if(autoTimer <= 0){
+                            autoTimer = autoInterval;
+                            NextDialogue();
+                            return;
+                    }
                 }
-            }
-
         }
 
         Line line = getLine();

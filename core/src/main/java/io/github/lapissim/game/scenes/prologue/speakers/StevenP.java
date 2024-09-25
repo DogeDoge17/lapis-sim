@@ -20,6 +20,9 @@ public class StevenP extends Speaker {
             case "Big Donut":
                 DialogueManager.beginDialogue("test/test4");
                 break;
+            case "Funland Arcade Inside":
+                DialogueManager.beginDialogue("test/sadieFind");
+                break;
         }
     }
 
