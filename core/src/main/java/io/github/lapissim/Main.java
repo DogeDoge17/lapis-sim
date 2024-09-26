@@ -87,7 +87,7 @@ public class Main extends ApplicationAdapter {
 
 
     public void update() {
-        if((Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.ALT_RIGHT) || Gdx.input.isKeyPressed((com.badlogic.gdx.Input.Keys.ALT_LEFT)) && Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER))){
+        if((Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.ALT_RIGHT) || Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.ALT_LEFT)) && Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)){
             toggleFullscreen(Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.CONTROL_RIGHT));
         }
         Time.update();
