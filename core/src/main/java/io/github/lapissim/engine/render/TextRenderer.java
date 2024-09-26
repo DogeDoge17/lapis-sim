@@ -56,7 +56,6 @@ public class TextRenderer
 
         if(wrap) {
             inp = configureWrap(inp);
-            wrap = false;
         }
 
         for(int i = 0; i < inp.length(); i++){

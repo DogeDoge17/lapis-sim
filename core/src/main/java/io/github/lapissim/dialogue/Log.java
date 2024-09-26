@@ -27,15 +27,17 @@ public class Log
 
         if(Input.getKeyDown(com.badlogic.gdx.Input.Keys.TAB) || Input.getMouseDown(com.badlogic.gdx.Input.Buttons.BACK)) {
             open = !open;
-            if(open)
+            if(open) {
                 Time.setGTMulitplier(0);
+                scrollAmount = 0;
+            }
             else
                 Time.setGTMulitplier(1);
 
             PermissionManager.setWhitelists(Systems.LOG, open);
         }
 
-        scrollAmount += Input.getScroll().y * 2000 * Time.deltaTime;
+        scrollAmount += Input.getScroll().y * 3000 * Time.deltaTime;
         scrollAmount -= Input.getKey(com.badlogic.gdx.Input.Keys.UP) ? 7 : 0 * Time.deltaTime;
         scrollAmount += Input.getKey(com.badlogic.gdx.Input.Keys.DOWN) ? 7 : 0 * Time.deltaTime;
     }

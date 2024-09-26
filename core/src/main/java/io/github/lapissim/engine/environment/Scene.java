@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.github.lapissim.Main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Scene {
     public String backDrop;
@@ -47,13 +50,22 @@ public class Scene {
     }
 
     public void postDraw(SpriteBatch batch){
-
+        for(int i = 0; i < objects.length; i++){
+            objects[i].postDraw(batch);
+        }
     }
 
     public void update()
     {
+        Arrays.sort(objects, Comparator.comparingInt(o -> o.drawOrder));
+        for(int i = 0; i < objects.length; i++){
+            objects[i].earlyUpdate();
+        }
         for(int i = 0; i < objects.length; i++){
             objects[i].update();
+        }
+        for(int i = 0; i < objects.length; i++){
+            objects[i].lateUpdate();
         }
     }
 

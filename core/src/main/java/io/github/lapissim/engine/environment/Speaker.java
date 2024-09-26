@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
 import io.github.lapissim.dialogue.DialogueManager;
+import io.github.lapissim.game.prefabs.Doorway;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,11 @@ public class Speaker extends SceneObject {
 
             batch.setColor(1, 1, 1, 1);
         }
+    }
+
+    @Override
+    public void onHover(){
+        Doorway.speakerHover = visible;
     }
 
     public Speaker(String id, String displayName, String emotion, int x, int y) {

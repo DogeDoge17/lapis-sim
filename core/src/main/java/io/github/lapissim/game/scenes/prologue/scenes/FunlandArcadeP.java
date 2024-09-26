@@ -33,7 +33,7 @@ public class FunlandArcadeP extends Scene {
         //TODO: test dialogue starting on scene entrance and flags
         if(Flags.flags.getDouble("findCarti") >= 3)
             addObject(new Doorway(FunlandArcadeInsideP.class,"Enter Arcade", Main.SCREENWIDTH/2-55, 215,300, 185){ { centred = true;}} );
-    }
+    } 
 
 
     @Override

@@ -49,6 +49,7 @@ public class Flags {
         try{
             boolean val = Boolean.parseBoolean(value);
             boolFlags.put(flag, val);
+            return;
         }catch(Exception ex){
 
         }

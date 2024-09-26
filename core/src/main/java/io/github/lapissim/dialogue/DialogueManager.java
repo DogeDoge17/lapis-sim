@@ -2,6 +2,7 @@ package io.github.lapissim.dialogue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -62,6 +63,11 @@ public class DialogueManager
 
     private static FilterEntry[] diaFilter = new FilterEntry[]{new FilterEntry("\\n", "\n"), new FilterEntry("\\q", "\"")};
 
+    private static VoiceLine[] voiceLines = new VoiceLine[5];
+
+    private static boolean voicedDialogue = false;
+
+
     public static void beginInlineDialogue(String rawDialogue)
     {
         if(nameplate == null || neNameplatePas == null){
@@ -73,6 +79,9 @@ public class DialogueManager
         rawLines = new String[unFilteredLines.length];
         labels = new HashMap<>();
         int count = -1;
+        displayPtr = 0;
+        displayBuilder = new StringBuilder();
+        f1 = true;
         for(int i = 0; i < unFilteredLines.length; i++)
         {
             if(unFilteredLines[i].trim().isEmpty())
@@ -267,6 +276,7 @@ public class DialogueManager
     {
         FileHandle hi = Gdx.files.internal("dialogue/" + path + ".dd");
         beginInlineDialogue(hi.readString());
+
     }
 
     public static void NextDialogue()
@@ -274,6 +284,7 @@ public class DialogueManager
         {
             Line l = getLine();
             if (l != null) {
+                if(l.lineType == LineType.DIA)
                 if (displayPtr < l.contents.length() - 1) {
                     while (addChar(l)) ;
                     skipTimer = 0;
@@ -413,7 +424,7 @@ public class DialogueManager
         {
             char c = displayBuilder.charAt(i-1);
             if(c == ' '){
-                if(displayBuilder.length() > i) {
+                if(displayBuilder.length() > i-1) {
                     displayBuilder.deleteCharAt(i-1);
                     displayBuilder.insert(i-1, '\n');
                 }

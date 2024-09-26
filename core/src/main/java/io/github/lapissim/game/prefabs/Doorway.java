@@ -19,6 +19,8 @@ public class Doorway<T extends Scene> extends SceneObject {
 
     //public Scene destination;
 
+    public static boolean speakerHover;
+
     public Class<T> destination;
     //public Supplier<T> destination;
 
@@ -28,6 +30,7 @@ public class Doorway<T extends Scene> extends SceneObject {
         this.width = width;
         this.height = height;
         centred = false;
+        drawOrder = 2;
     }
 
     @Override
@@ -50,6 +53,30 @@ public class Doorway<T extends Scene> extends SceneObject {
             throw new RuntimeException(e);
         }
         super.onClick();
+    }
+
+    @Override
+    public void earlyUpdate(){
+        speakerHover = false;
+    }
+
+    @Override
+    public void lateUpdate(){
+        if(speakerHover)
+            hovering = false;
+    }
+
+    @Override
+    public void postDraw(SpriteBatch batch){
+        if(!hovering)
+            return;
+        Vector2 textSize = TextRenderer.measureString(Font.fontCache.get("Comic Sans MS"), displayName, 16);
+
+        if(textSize.x + Main.mouseRec.x <= Main.SCREENWIDTH - 15)
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x, Main.mouseRec.y, 16, Color.WHITE);
+        else{
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x - textSize.x, Main.mouseRec.y, 16, Color.WHITE);
+        }
     }
 
     @Override

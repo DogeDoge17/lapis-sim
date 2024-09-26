@@ -42,6 +42,8 @@ public abstract class SceneObject {
 
     public boolean centred = true;
 
+    public int drawOrder = 5;
+
 
     public SceneObject(String id, String displayName, String emotion, int x, int y){
         this.id = id;
@@ -61,6 +63,10 @@ public abstract class SceneObject {
     public void setDimensions(int w, int h){
         width = w;
         height = h;
+    }
+
+    public void setDrawOrder(int order){
+        this.drawOrder = order;
     }
 
     public void setPosition(Vector2 position){
@@ -120,8 +126,20 @@ public abstract class SceneObject {
         return centred ? (getX2() < m.x + m.width && getX2() + getWidth() > m.x && getY() < m.y + m.height && getY() + getHeight() > m.y) && !DialogueManager.visible : (getRawX() < m.x + m.width && getRawX() + getWidth()*dir > m.x && getY() < m.y + m.height && getY() + getHeight() > m.y) && !DialogueManager.visible ;
     }
 
+
+    public void onHover(){
+
+    }
+
+    public void earlyUpdate() { }
+
+    public void lateUpdate() { }
+
     public void update(){
         hovering = hoveringOver(Main.mouseRec);
+
+        if(hovering)
+            onHover();
 
         if(hovering && visible && PermissionManager.checkPermissions(Systems.SCENEOBJECTCLICK)){
             if(io.github.lapissim.engine.Input.getMouseDown(Input.Buttons.LEFT)){
@@ -222,9 +240,9 @@ public abstract class SceneObject {
         else{
             batch.draw(texture, x,y, 0,0, dir*width, height, scaleX,scaleY,rotation);
         }
-
-
     }
+
+    public void postDraw(SpriteBatch batch){}
 
     public void addMoveKeyframe(MoveNode moveNode) {
         if(moveKeyframes == null)
