@@ -1,4 +1,6 @@
 backdrops/beach-city/BigDonut.png
+backdrops/beach-city/BigDonutBackroom.png
+backdrops/beach-city/BigDonutInside.png
 backdrops/beach-city/funland-arcade-inside.png
 backdrops/beach-city/funland-arcade.png
 backdrops/beach-city/funland-gate.png
@@ -10,8 +12,12 @@ dialogue/test/test2.dd
 dialogue/test/test3.dd
 dialogue/test/test4.dd
 dialogue/test/test5.dd
+font/Comic Sans MS Border.fntdat
+font/Comic Sans MS Border.png
 font/Comic Sans MS.fntdat
 font/Comic Sans MS.png
+font/Comic Sans MSOLD.fntdat
+font/Comic Sans MSOLD.png
 libgdx.png
 shaders/outline.frag
 speakers/carti/neutral.png

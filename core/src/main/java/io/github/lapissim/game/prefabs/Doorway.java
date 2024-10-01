@@ -72,6 +72,7 @@ public class Doorway<T extends Scene> extends SceneObject {
             return;
         Vector2 textSize = TextRenderer.measureString(Font.fontCache.get("Comic Sans MS"), displayName, 16);
 
+        TextRenderer.setBorder();
         if(textSize.x + Main.mouseRec.x <= Main.SCREENWIDTH - 15)
             TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x, Main.mouseRec.y, 16, Color.WHITE);
         else{

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.engine.Time;
 import io.github.lapissim.engine.animation.MoveNode;
+import io.github.lapissim.engine.animation.ScaleNode;
 import io.github.lapissim.engine.animation.TransformStyle;
 import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.environment.Speaker;
@@ -134,13 +135,6 @@ public class DialogueManager
                     line.lineType = LineType.LINEAR;
                     line.time = Float.parseFloat(lineArgs[1]);
                     break;
-                case "scale":
-                    if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
-
-                    line.lineType = LineType.SCALE;
-                    line.speakerId = lineArgs[1];
-                    line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[2]));
-                    break;
                 case "translate":
                     if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
 
@@ -163,6 +157,13 @@ public class DialogueManager
                     line.lineType = LineType.ROTATE;
                     line.speakerId = lineArgs[1];
                     line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[2]));
+                    break;
+                case "scale":
+                    if(lineArgs.length < 4) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.SCALE;
+                    line.speakerId = lineArgs[1];
+                    line.vector = new Vector2(Float.parseFloat(lineArgs[2]),Float.parseFloat(lineArgs[3]));
                     break;
                 case "jmp":
                     if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
@@ -336,6 +337,13 @@ public class DialogueManager
                     MoveNode node = new MoveNode(line.vector, transformTime, transformStyle);
                     node.additive = true;
                     SceneManager.activeScene.getSpeaker(line.speakerId).addMoveKeyframe(node);
+                    if(!retaining){
+                        transformStyle = TransformStyle.none;
+                        transformTime = 0;
+                    }
+                    break;
+                case SCALE:
+                    SceneManager.activeScene.getSpeaker(line.speakerId).addScaleKeyframe(new ScaleNode(line.vector, transformTime, transformStyle));
                     if(!retaining){
                         transformStyle = TransformStyle.none;
                         transformTime = 0;
@@ -516,6 +524,10 @@ public class DialogueManager
 
         Line line = getLine();
 
+        if(line != null)
+            if(line.lineType == LineType.END)
+                return;
+
         if(line.lineType != LineType.DIA && line.lineType != LineType.CHOICE)
             return;
 
@@ -525,7 +537,8 @@ public class DialogueManager
         }
 
         Speaker speaker = SceneManager.activeScene.getSpeaker(line.speakerId);
-        speaker.speaking = true;
+        if(speaker != null)
+            speaker.speaking = true;
 
         if(speaker.emotion != line.portrait)
             speaker.setEmotion(line.portrait);

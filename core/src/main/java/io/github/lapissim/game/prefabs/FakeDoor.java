@@ -21,6 +21,7 @@ public class FakeDoor extends SceneObject {
         this.width = width;
         this.height = height;
         centred = false;
+        drawOrder = 2;
     }
 
     @Override
@@ -31,6 +32,20 @@ public class FakeDoor extends SceneObject {
     @Override
     protected void loadTexture(){
         texture = new TextureRegion(new Texture("square.png"));
+    }
+
+    @Override
+    public void postDraw(SpriteBatch batch){
+        if(!hovering)
+            return;
+        Vector2 textSize = TextRenderer.measureString(Font.fontCache.get("Comic Sans MS"), displayName, 16);
+
+        TextRenderer.setBorder();
+        if(textSize.x + Main.mouseRec.x <= Main.SCREENWIDTH - 15)
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x, Main.mouseRec.y, 16, Color.WHITE);
+        else{
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x - textSize.x, Main.mouseRec.y, 16, Color.WHITE);
+        }
     }
 
     @Override

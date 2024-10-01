@@ -18,6 +18,8 @@ START:
   dia "wow! its playboi carti!" "steven" "happy"
   dia "who?" "lapis" "tired"
   dia "kys" "steven" "mad"
+  linear 20
+  scale carti 0 0
   linear 5
   translate carti 0 700
 

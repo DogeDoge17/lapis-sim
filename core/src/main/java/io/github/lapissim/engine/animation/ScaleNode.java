@@ -1,9 +1,12 @@
 package io.github.lapissim.engine.animation;
 
-public class ScaleNode extends AnimationNode {
-    public float newScale;
+import com.badlogic.gdx.math.Vector2;
 
-    public ScaleNode(float scale, float time, TransformStyle style) {
+public class ScaleNode extends AnimationNode {
+    public Vector2 newScale;
+    public Vector2 oldScale;
+
+    public ScaleNode(Vector2 scale, float time, TransformStyle style) {
         super(time, style);
         newScale = scale;
     }

@@ -205,9 +205,89 @@ public abstract class SceneObject {
 
     }
 
+    public void addMoveKeyframe(MoveNode moveNode) {
+        if(moveKeyframes == null)
+            moveKeyframes = new ArrayList<>();
+
+        moveKeyframes.add(moveNode);
+        initMoveKeyframe();
+    }
+
+    private void initMoveKeyframe(){
+        if(moveKeyframes.size() != 1)
+            return;
+        MoveNode keyFrame = moveKeyframes.get(0);
+
+        keyFrame.start = new Vector2(x,y);
+
+        if(!keyFrame.additive)
+            return;
+
+        keyFrame.destination = new Vector2(x + keyFrame.destination.x, y + keyFrame.destination.y );
+    }
+
     private void AnimateScale()
     {
+        ScaleNode m = scaleKeyframes.get(0);
 
+        m.progress += 0.2 * Time.gameTime;
+        m.progress = Math.max(0, Math.min(m.time, m.progress)); //clamps the thingy
+        float t = (m.progress / m.time );
+
+        if(t >= 1)
+            t = 1;
+
+        switch (m.style){
+            case none:
+                scaleX = (int)m.newScale.x;
+                scaleY = (int)m.newScale.y;
+                break;
+            case lerp: {
+                Vector2 v = new Vector2(scaleX, scaleY);
+
+                v.lerp(m.oldScale, t);
+
+                scaleX = (int) v.x;
+                scaleY= (int) v.y;
+                break;
+            }
+            case linear: {
+                Vector2 v = new Vector2(scaleX, scaleY);
+
+                v.interpolate(m.newScale, t, Interpolation.linear);
+
+                scaleX = v.x;
+                scaleY = v.y;
+                break;
+            }
+        }
+
+        if(t >= .14f)
+            m.progress = m.time;
+
+        if(m.progress >= m.time){
+            scaleKeyframes.remove(0);
+            initScaleKeyframe();
+            return;
+        }
+    }
+
+    public void addScaleKeyframe(ScaleNode scaleNode) {
+        if(scaleKeyframes == null)
+            scaleKeyframes = new ArrayList<>();
+
+        scaleKeyframes.add(scaleNode);
+        initScaleKeyframe();
+    }
+
+    private void initScaleKeyframe(){
+        if(scaleKeyframes.size() != 1)
+            return;
+        ScaleNode keyFrame = scaleKeyframes.get(0);
+
+        keyFrame.oldScale = new Vector2(scaleX, scaleY);
+
+        keyFrame.newScale = new Vector2(keyFrame.newScale.x, keyFrame.newScale.y);
     }
 
     private void AnimateRotation()
@@ -243,26 +323,5 @@ public abstract class SceneObject {
     }
 
     public void postDraw(SpriteBatch batch){}
-
-    public void addMoveKeyframe(MoveNode moveNode) {
-        if(moveKeyframes == null)
-            moveKeyframes = new ArrayList<>();
-
-        moveKeyframes.add(moveNode);
-        initMoveKeyframe();
-    }
-
-    private void initMoveKeyframe(){
-        if(moveKeyframes.size() != 1)
-            return;
-        MoveNode keyFrame = moveKeyframes.get(0);
-
-        keyFrame.start = new Vector2(x,y);
-
-        if(!keyFrame.additive)
-            return;
-
-        keyFrame.destination = new Vector2(x + keyFrame.destination.x, y + keyFrame.destination.y );
-    }
 
 }

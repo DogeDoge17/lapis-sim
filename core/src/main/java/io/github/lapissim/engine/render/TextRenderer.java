@@ -1,7 +1,8 @@
 package io.github.lapissim.engine.render;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
@@ -11,9 +12,9 @@ public class TextRenderer
     private static boolean wrap = false;
     private static int width = 0;
 
-    /*private static boolean border = false;
-    private static float borderSize = 0;
-    private static Color borderColour = Color.BLACK;*/
+    private static boolean border = false;
+    //private static float borderSize = 1.5f;
+    private static Color borderColour = Color.BLACK;
 
     public static void enableWrapping(int width)
     {
@@ -113,26 +114,39 @@ public class TextRenderer
             //int foo = (int)Math.floor(prevRec.x/fn.defaultSize);
             charOffset += (prevRec.width - prevRec.x) * fontPercent;
 
+            if(border) {
+                Font borderFn = Font.fontCache.get(fn.internalPath + " Border");
+                LineChar recB = borderFn.textureMap.get(c);
+                borderFn.atlas.setRegion((int)recB.xS,(int)recB.yS,(int)recB.width, (int)recB.height);
 
+                float borderX = charOffset + ((fn.atlas.getRegionWidth() * fontPercent) - (borderFn.atlas.getRegionWidth() * fontPercent )) / 2;
+                float borderY = (y + lineOffset) + ((fn.atlas.getRegionHeight() * fontPercent) - (borderFn.atlas.getRegionHeight() * fontPercent)) / 2;
 
-            batch.draw(fn.atlas, charOffset, y+lineOffset, 0,0, fn.atlas.getRegionWidth(), fn.atlas.getRegionHeight(), fontPercent, fontPercent, 0);
+                batch.setColor(borderColour);
+                batch.draw(borderFn.atlas, borderX, borderY, borderFn.atlas.getRegionWidth() * fontPercent , borderFn.atlas.getRegionHeight() * fontPercent);
+            }
+            //renderChar(fn.atlas.getTexture(), borderX, borderY, fn.atlas.getRegionWidth()*fontPercent * borderSize, fn.atlas.getRegionHeight()*fontPercent*borderSize);
+
+            batch.setColor(colour);
+            batch.draw(fn.atlas, charOffset, y+lineOffset, fn.atlas.getRegionWidth()*fontPercent, fn.atlas.getRegionHeight()*fontPercent);
             prevRec = rec;
             //lC = c;
         }
         //batch.setShader(Main.defaultShader);
         batch.setColor(1,1,1,1);
         maxCharOffset = Math.max(maxCharOffset,charOffset);
-        //border = false;
+        border = false;
         return new Vector2(maxCharOffset, lineOffset);
     }
 
-    /*public static void setBorder(){
-        setBorder(1.4f, Color.BLACK);
+
+    public static void setBorder(){
+        setBorder(Color.BLACK);
     }
 
-    public static void setBorder(float borderSize, Color color){
+    public static void setBorder(Color color){
         border = true;
-        TextRenderer.borderSize = borderSize;
+
         borderColour = color;
-    }*/
+    }
 }

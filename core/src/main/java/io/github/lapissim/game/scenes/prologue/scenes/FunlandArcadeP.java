@@ -29,11 +29,12 @@ public class FunlandArcadeP extends Scene {
         addObject(new SadieP("neutral", Main.SCREENWIDTH/2, 140) {{
             this.setVisibility(Flags.flags.getDouble("findCarti") > 3);
         }});
-        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500){ { centred = true;}});
+        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500){ { centred = true; }});
+
         //TODO: test dialogue starting on scene entrance and flags
         if(Flags.flags.getDouble("findCarti") >= 3)
             addObject(new Doorway(FunlandArcadeInsideP.class,"Enter Arcade", Main.SCREENWIDTH/2-55, 215,300, 185){ { centred = true;}} );
-    } 
+    }
 
 
     @Override
