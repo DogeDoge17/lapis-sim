@@ -7,7 +7,7 @@ import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.save.Flags;
-import io.github.lapissim.game.prefabs.Doorway;
+import io.github.lapissim.game.prefabs.SceneDoorway;
 import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
 import io.github.lapissim.game.scenes.prologue.speakers.SadieP;
 import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
@@ -29,11 +29,11 @@ public class FunlandArcadeP extends Scene {
         addObject(new SadieP("neutral", Main.SCREENWIDTH/2, 140) {{
             this.setVisibility(Flags.flags.getDouble("findCarti") > 3);
         }});
-        addObject(new Doorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500){ { centred = true; }});
+        addObject(new SceneDoorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500){ { centred = true; }});
 
         //TODO: test dialogue starting on scene entrance and flags
         if(Flags.flags.getDouble("findCarti") >= 3)
-            addObject(new Doorway(FunlandArcadeInsideP.class,"Enter Arcade", Main.SCREENWIDTH/2-55, 215,300, 185){ { centred = true;}} );
+            addObject(new SceneDoorway(FunlandArcadeInsideP.class,"Enter Arcade", Main.SCREENWIDTH/2-55, 215,300, 185){ { centred = true;}} );
     }
 
 

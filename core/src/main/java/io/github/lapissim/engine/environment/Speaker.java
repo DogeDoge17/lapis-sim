@@ -1,12 +1,9 @@
 package io.github.lapissim.engine.environment;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
 import io.github.lapissim.dialogue.DialogueManager;
-import io.github.lapissim.game.prefabs.Doorway;
-
-import java.util.ArrayList;
+import io.github.lapissim.game.prefabs.SceneDoorway;
 
 public class Speaker extends SceneObject {
     public boolean speaking;
@@ -29,7 +26,7 @@ public class Speaker extends SceneObject {
 
     @Override
     public void onHover(){
-        Doorway.speakerHover = visible;
+        SceneDoorway.speakerHover = visible;
     }
 
     public Speaker(String id, String displayName, String emotion, int x, int y) {

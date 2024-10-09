@@ -4,9 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.lapissim.Main;
 import io.github.lapissim.engine.environment.Scene;
 import io.github.lapissim.engine.environment.SceneObject;
-import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
-import io.github.lapissim.game.prefabs.Doorway;
+import io.github.lapissim.game.prefabs.SceneDoorway;
 import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
 import io.github.lapissim.game.scenes.prologue.speakers.SadieP;
 import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
@@ -25,7 +24,7 @@ public class FunlandArcadeInsideP extends Scene {
         addObject(new LapisP("Lapis", "neutral", 200, 109)) ;
         addObject(new StevenP( "Steven", "happy", 500, 140) {{dir = -1;}});
         addObject(new SadieP("neutral",  Main.SCREENWIDTH +300, 100));
-        addObject(new Doorway(FunlandArcadeP.class, "Leave Arcade", 40, 0, Main.SCREENWIDTH-80, 100) { { centred = false;}});
+        addObject(new SceneDoorway(FunlandArcadeP.class, "Leave Arcade", 40, 0, Main.SCREENWIDTH-80, 100) { { centred = false;}});
         //TODO: test dialogue starting on scene entrance and flags
         //addObject(new Doorway(FunlandArcadeInsideP.class,"Enter Arcade", Speaker.RightAnchor+45, 100,140, 500));
     }

@@ -42,6 +42,8 @@ public class Scene {
         batch.setColor(1,1,1,1);
         batch.draw(bgText, 0, 0, 1, 1, Main.SCREENWIDTH, Main.SCREENHEIGHT,1, 1, 0);
 
+        Arrays.sort(objects, Comparator.comparingInt(o -> o.drawOrder));
+
         if(objects != null)
         for(int i = 0; i< objects.length; i++){
             objects[i].draw(batch);
@@ -57,7 +59,7 @@ public class Scene {
 
     public void update()
     {
-        Arrays.sort(objects, Comparator.comparingInt(o -> o.drawOrder));
+        Arrays.sort(objects, Comparator.comparingInt(o -> o.updateOrder));
         for(int i = 0; i < objects.length; i++){
             objects[i].earlyUpdate();
         }

@@ -43,6 +43,7 @@ public abstract class SceneObject {
     public boolean centred = true;
 
     public int drawOrder = 5;
+    public int updateOrder = 5;
 
 
     public SceneObject(String id, String displayName, String emotion, int x, int y){

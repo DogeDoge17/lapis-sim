@@ -6,54 +6,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import io.github.lapissim.Main;
-import io.github.lapissim.engine.environment.Scene;
-import io.github.lapissim.engine.environment.SceneManager;
+import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.function.Supplier;
-
-public class Doorway<T extends Scene> extends SceneObject {
-
-    //public Scene destination;
+public class Doorway extends SceneObject {
 
     public static boolean speakerHover;
 
-    public Class<T> destination;
-    //public Supplier<T> destination;
-
-    public Doorway(Class<T> dest, String text, int x, int y, int width, int height) {
+    public Doorway(String text, int x, int y, int width, int height) {
         super("Doorway" + text.trim().replace(" ", ""), text, "doorway", x, y);
-        this.destination = dest;
         this.width = width;
         this.height = height;
         centred = false;
         drawOrder = 2;
+        updateOrder = 15;
     }
 
-    @Override
-    protected void loadTexture(){
-        texture = new TextureRegion(new Texture("square.png"));
-    }
-
-    @Override
-    public void onClick()  {
-
-        try {
-            SceneManager.loadNewScene(destination.getDeclaredConstructor().newInstance());
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-        super.onClick();
-    }
 
     @Override
     public void earlyUpdate(){
@@ -64,6 +34,11 @@ public class Doorway<T extends Scene> extends SceneObject {
     public void lateUpdate(){
         if(speakerHover)
             hovering = false;
+    }
+
+    @Override
+    protected void loadTexture(){
+        texture = new TextureRegion(new Texture("square.png"));
     }
 
     @Override
@@ -103,5 +78,4 @@ public class Doorway<T extends Scene> extends SceneObject {
         }
 
     }
-
 }

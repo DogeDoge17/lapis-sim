@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS Border.fntdat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS Border.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MSOLD.fntdat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/Comic Sans MSOLD.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/dialogue/test/test.dd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/dialogue/test/test.dd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" beforeDir="false" afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.fntdat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/font/Comic Sans MS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/SceneDoorway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/animation/RotationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/animation/RotationNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/animation/ScaleNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/animation/ScaleNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/render/TextRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/Speaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/Doorway.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/Doorway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/FakeDoor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/FakeDoor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/FakeDoor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/prefabs/DialogueDoor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/BigDonutP.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/BigDonutP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/FunlandArcadeInsideP.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/FunlandArcadeInsideP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/FunlandArcadeP.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/FunlandArcadeP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
     </list>
@@ -377,7 +370,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java</url>
-          <line>234</line>
+          <line>235</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

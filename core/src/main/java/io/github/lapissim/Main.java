@@ -5,36 +5,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sun.org.apache.bcel.internal.generic.FALOAD;
 import io.github.lapissim.dialogue.DialogueManager;
 import io.github.lapissim.dialogue.Log;
 import io.github.lapissim.engine.Input;
 import io.github.lapissim.engine.Time;
 import io.github.lapissim.engine.environment.SceneManager;
-import io.github.lapissim.engine.environment.SceneObject;
-import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
-import io.github.lapissim.engine.save.Flags;
 import io.github.lapissim.engine.save.Save;
-import io.github.lapissim.game.prefabs.Doorway;
-import io.github.lapissim.game.scenes.prologue.scenes.BigDonutP;
-import io.github.lapissim.game.scenes.prologue.scenes.FunlandArcadeP;
-import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
-import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
-
-import java.math.BigDecimal;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -76,7 +62,6 @@ public class Main extends ApplicationAdapter {
 
         Save.loadRecentSave();
     }
-
 
     @Override
     public void render() {

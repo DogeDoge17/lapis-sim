@@ -1,12 +1,11 @@
 package io.github.lapissim.game.scenes.prologue.scenes;
 
-import io.github.lapissim.Main;
 import io.github.lapissim.engine.environment.Scene;
 import io.github.lapissim.engine.environment.SceneObject;
 import io.github.lapissim.engine.environment.Speaker;
 import io.github.lapissim.engine.save.Flags;
-import io.github.lapissim.game.prefabs.Doorway;
-import io.github.lapissim.game.prefabs.FakeDoor;
+import io.github.lapissim.game.prefabs.SceneDoorway;
+import io.github.lapissim.game.prefabs.DialogueDoor;
 import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
 import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
 
@@ -21,9 +20,9 @@ public class BigDonutP extends Scene {
         lapis.dir = -1;
         addObject(lapis);
         addObject(new StevenP( "Steven", "neutral", 250, 140));
-        addObject(new Doorway(FunlandArcadeP.class, "Arcade", 0, 100,200, 500){ { centred = true;}});
+        addObject(new SceneDoorway(FunlandArcadeP.class, "Arcade", 0, 100,200, 500){ { centred = true;}});
 
-        addObject(new FakeDoor("test/bigDonutDoor", "Enter big donut", 634, 127,203, 160){ { centred = true;}});
+        addObject(new DialogueDoor("test/bigDonutDoor", "Enter big donut", 634, 127,203, 160){ { centred = true;}});
 
 
         Flags.flags.setDouble("lapisTestArcadeLeave" , 2);
