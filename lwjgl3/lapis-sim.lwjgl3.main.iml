@@ -72,5 +72,6 @@
     <orderEntry type="library" name="Gradle: org.jcraft:jorbis:0.0.17" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-freetype:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-jnigen-loader:2.3.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.hjson:hjson:3.1.0" level="project" />
   </component>
 </module>

@@ -83,6 +83,7 @@ public class DialogueManager
         displayPtr = 0;
         displayBuilder = new StringBuilder();
         f1 = true;
+        autoTimer = autoInterval;
         for(int i = 0; i < unFilteredLines.length; i++)
         {
             if(unFilteredLines[i].trim().isEmpty())
@@ -449,7 +450,12 @@ public class DialogueManager
             return false;
         }
 
-        displayBuilder.append(line.contents.charAt(displayPtr));
+        char c = line.contents.charAt(displayPtr);
+        if(c == ','){
+            charPrintTimer = printSpeed *9;
+        }
+
+        displayBuilder.append(c);
         displayPtr++;
 
         if(displayPtr % 50 == 0){
@@ -512,8 +518,8 @@ public class DialogueManager
         if(line != null)
             if(line.lineType == LineType.DIA)
                 if(charPrintTimer <= 0 && displayPtr < line.contents.length()){
-                    addChar(line);
                     charPrintTimer = printSpeed;
+                    addChar(line);
                 }
         f1 = false;
     }

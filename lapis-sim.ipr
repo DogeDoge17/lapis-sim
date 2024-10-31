@@ -324,6 +324,15 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.jlayer/jlayer/1.0.1-gdx/f1c4ffebc5e4f68be914404faab580c20de8ea1f/jlayer-1.0.1-gdx-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Gradle: org.hjson:hjson:3.1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hjson/hjson/3.1.0/a512e708c9eee06d121d8b8617d196ba2c2185ac/hjson-3.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hjson/hjson/3.1.0/cc480c73fb27f6eaa6818d1ac2727332c9d0c9d8/hjson-3.1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Gradle: org.jcraft:jorbis:0.0.17">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jcraft/jorbis/0.0.17/8872d22b293e8f5d7d56ff92be966e6dc28ebdc6/jorbis-0.0.17.jar!/" />
