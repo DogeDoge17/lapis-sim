@@ -21,6 +21,8 @@ import io.github.lapissim.engine.environment.SceneManager;
 import io.github.lapissim.engine.render.Font;
 import io.github.lapissim.engine.render.TextRenderer;
 import io.github.lapissim.engine.save.Save;
+import io.github.lapissim.localization.Language;
+import io.github.lapissim.localization.Languages;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -59,7 +61,7 @@ public class Main extends ApplicationAdapter {
         outlineShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/outline.frag").readString());
 
         //textBorderShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/textBorder.frag").readString());
-
+        Language.setLang(Languages.en);
         Save.loadRecentSave();
     }
 

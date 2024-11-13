@@ -1,1 +1,29 @@
-sample: hi
+pro:
+{
+  big-donut:
+  {
+    enter: Enter Big Donut
+    exit: Leave Big Donut
+    doorway: Big Donut
+  }
+  arcade:
+  {
+    doorway: Arcade
+  }
+
+  chars:
+  {
+    steven: {
+        displayDef: Steven
+    }
+    lapis: {
+        displayDef: Lapis
+    }
+  }
+
+}
+
+sample:
+{
+    fella: hi
+}

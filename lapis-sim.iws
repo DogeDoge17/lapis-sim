@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6254892-4e39-4eba-bc1e-229237cb1ff3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/localization/en.hjson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/localization/Language.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/localization/Languages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/lapis-sim.core.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/core/lapis-sim.core.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/lapis-sim.core.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/core/lapis-sim.core.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/dialogue/DialogueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lapis-sim.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/localization/en.hjson" beforeDir="false" afterPath="$PROJECT_DIR$/assets/localization/en.hjson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/BigDonutP.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/game/scenes/prologue/scenes/BigDonutP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/localization/Language.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/lapissim/localization/Language.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lapis-sim.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lapis-sim.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/lapis-sim.lwjgl3.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/lapis-sim.lwjgl3.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/lapis-sim.lwjgl3.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/lapis-sim.lwjgl3.test.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,20 +200,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "full.screen.before.presentation.mode": "true",
-    "last_opened_file_path": "C:/Users/ti2ge/source/java/lapis-sim/assets",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ti2ge/source/java/lapis-sim/assets&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.github.lapissim.engine.render" />
@@ -237,7 +231,7 @@
       <recent name="io.github.lapissim.engine.render" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.lapis-sim [assemble]">
+  <component name="RunManager" selected="Gradle.lapis-sim [run]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -389,10 +383,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.lapis-sim [run]" />
         <item itemvalue="Gradle.lapis-sim [assemble]" />
         <item itemvalue="Gradle.lapis-sim [build]" />
         <item itemvalue="Gradle.lapis-sim [buildDependents]" />
-        <item itemvalue="Gradle.lapis-sim [run]" />
       </list>
     </recent_temporary>
   </component>
@@ -420,6 +414,9 @@
       <updated>1724947155830</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.hjson" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -464,6 +461,11 @@
           <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/engine/environment/SceneObject.java</url>
           <line>235</line>
           <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/io/github/lapissim/localization/Language.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="105" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

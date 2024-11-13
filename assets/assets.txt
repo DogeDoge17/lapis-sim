@@ -19,6 +19,7 @@ font/Comic Sans MS.png
 font/Comic Sans MSOLD.fntdat
 font/Comic Sans MSOLD.png
 libgdx.png
+localization/en.hjson
 shaders/outline.frag
 speakers/carti/neutral.png
 speakers/lapis/bored-cracked.png
