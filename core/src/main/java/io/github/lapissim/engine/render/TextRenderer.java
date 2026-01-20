@@ -25,8 +25,6 @@ public class TextRenderer
     private static String configureWrap(String input){
         StringBuilder builder = new StringBuilder(input);
 
-        int len = builder.length();
-
         for(int i = width; i < builder.length(); i += width){
             if(i < width)
                 return builder.toString();
@@ -40,8 +38,6 @@ public class TextRenderer
                     break;
                 }
             }
-
-            //builder.insert(i, '\n');
         }
 
         return builder.toString();
@@ -125,20 +121,16 @@ public class TextRenderer
                 batch.setColor(borderColour);
                 batch.draw(borderFn.atlas, borderX, borderY, borderFn.atlas.getRegionWidth() * fontPercent , borderFn.atlas.getRegionHeight() * fontPercent);
             }
-            //renderChar(fn.atlas.getTexture(), borderX, borderY, fn.atlas.getRegionWidth()*fontPercent * borderSize, fn.atlas.getRegionHeight()*fontPercent*borderSize);
-
             batch.setColor(colour);
+            System.out.printf("(%s) %f%% %f %f %f %f -- %d %d %d %d\n", inp, fontPercent * 100, charOffset, y+lineOffset, fn.atlas.getRegionWidth() * fontPercent, fn.atlas.getRegionHeight() * fontPercent, fn.atlas.getRegionX(), fn.atlas.getRegionY(), fn.atlas.getRegionWidth(), fn.atlas.getRegionHeight());
             batch.draw(fn.atlas, charOffset, y+lineOffset, fn.atlas.getRegionWidth()*fontPercent, fn.atlas.getRegionHeight()*fontPercent);
             prevRec = rec;
-            //lC = c;
         }
-        //batch.setShader(Main.defaultShader);
         batch.setColor(1,1,1,1);
         maxCharOffset = Math.max(maxCharOffset,charOffset);
         border = false;
         return new Vector2(maxCharOffset, lineOffset);
     }
-
 
     public static void setBorder(){
         setBorder(Color.BLACK);

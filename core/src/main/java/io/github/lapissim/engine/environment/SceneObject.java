@@ -18,6 +18,8 @@ import io.github.lapissim.engine.permissions.Systems;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Objects;
 
 public abstract class SceneObject {
     protected String id;
@@ -77,16 +79,16 @@ public abstract class SceneObject {
 
     protected void loadTexture()
     {
-        texture = new TextureRegion(new Texture("speakers/"+id+"/"+emotion + ".png"));
+        texture = new TextureRegion(new Texture("speakers/" + id.toLowerCase(Locale.ROOT) +"/"+emotion.toLowerCase(Locale.ROOT) + ".png"));
     }
 
     public void setEmotion(String emo)
     {
-        if(emo == emotion)
+        if(Objects.equals(emo, emotion))
             return;
 
         if(!spriteArchive.containsKey(emo)) {
-            texture = new TextureRegion(new Texture("speakers/" + id + "/" + emo + ".png"));
+            texture = new TextureRegion(new Texture("speakers/" + id.toLowerCase(Locale.ROOT) + "/" + emo.toLowerCase(Locale.ROOT) + ".png"));
             spriteArchive.put(emo, texture);
             this.emotion = emo;
             return;
@@ -149,9 +151,9 @@ public abstract class SceneObject {
             }
         }
 
-        if(moveKeyframes.size() > 0)  AnimateMove();
-        if(scaleKeyframes.size() > 0)  AnimateScale();
-        if(rotationKeyframes.size() > 0) AnimateRotation();
+        if(!moveKeyframes.isEmpty())  AnimateMove();
+        if(!scaleKeyframes.isEmpty())  AnimateScale();
+        if(!rotationKeyframes.isEmpty()) AnimateRotation();
 
     }
 
@@ -159,7 +161,7 @@ public abstract class SceneObject {
     {
         MoveNode m = moveKeyframes.get(0);
 
-        m.progress += 0.2 * Time.gameTime;
+        m.progress += (float) (0.2 * Time.gameTime);
         m.progress = Math.max(0, Math.min(m.time, m.progress)); //clamps the thingy
         float t = (m.progress / m.time );
 

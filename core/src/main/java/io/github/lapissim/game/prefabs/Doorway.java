@@ -49,9 +49,9 @@ public class Doorway extends SceneObject {
 
         TextRenderer.setBorder();
         if(textSize.x + Main.mouseRec.x <= Main.SCREENWIDTH - 15)
-            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x, Main.mouseRec.y, 16, Color.WHITE);
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Math.min(Main.mouseRec.x, Main.SCREENWIDTH), Main.mouseRec.y, 16, Color.WHITE);
         else{
-            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Main.mouseRec.x - textSize.x, Main.mouseRec.y, 16, Color.WHITE);
+            TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayName, Math.min(Main.mouseRec.x - textSize.x, Main.SCREENWIDTH), Main.mouseRec.y, 16, Color.WHITE);
         }
     }
 

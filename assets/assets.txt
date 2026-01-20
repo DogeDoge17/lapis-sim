@@ -4,7 +4,6 @@ backdrops/beach-city/BigDonutInside.png
 backdrops/beach-city/funland-arcade-inside.png
 backdrops/beach-city/funland-arcade.png
 backdrops/beach-city/funland-gate.png
-cursor.png
 dialogue/test/bigDonutDoor.dd
 dialogue/test/sadieFind.dd
 dialogue/test/test.dd
@@ -18,7 +17,6 @@ font/Comic Sans MS.fntdat
 font/Comic Sans MS.png
 font/Comic Sans MSOLD.fntdat
 font/Comic Sans MSOLD.png
-libgdx.png
 localization/en.hjson
 shaders/outline.frag
 speakers/carti/neutral.png
@@ -34,6 +32,8 @@ speakers/sadie/neutral.png
 speakers/steven/happy.png
 speakers/steven/mad.png
 speakers/steven/neutral.png
-square.png
 ui/dialogue-box-nameplate.png
 ui/dialogue-box.png
+cursor.png
+libgdx.png
+square.png

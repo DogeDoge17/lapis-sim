@@ -54,6 +54,10 @@ public class Font {
             String[] lineVars = associatedData[i].split(" ");
             textureMap.putIfAbsent(c, new LineChar(readyCoord(lineVars[0]),readyCoord(lineVars[1]), readyCoord(lineVars[2]), readyCoord(lineVars[3]),readyCoord(lineVars[4])));
         }
+        textureMap.entrySet().forEach(entry -> {
+            Character key = entry.getKey();
+            System.out.println("Key: " + key + ", Value: " + entry.getValue());
+        });
     }
 
     int readyCoord(String s){
@@ -69,7 +73,7 @@ public class Font {
     }
 }
 
-class LineChar{
+class LineChar {
     public int xS, yS, width, height, x = 0;
 
     public LineChar(){}
@@ -81,5 +85,9 @@ class LineChar{
         this.width = width;
         this.height = height;
         this.x = x;
+    }
+
+    public String toString(){
+        return String.format("xS: %d, yS: %d, width: %d, height: %d, x: %d", xS, yS, width, height, x);
     }
 }

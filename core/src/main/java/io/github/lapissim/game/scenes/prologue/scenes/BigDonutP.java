@@ -14,17 +14,19 @@ public class BigDonutP extends Scene {
     public BigDonutP(SceneObject[] objs) {
         super("Big Donut", "beach-city/BigDonut", objs);
     }
+
     public BigDonutP()
     {
         super("Big Donut", "beach-city/BigDonut");
+
         LapisP lapis = new LapisP(Language.getEntry("pro.chars.lapis.displayDef"), "neutral", Speaker.RightAnchor-200, 109);
         lapis.dir = -1;
+
         addObject(lapis);
         addObject(new StevenP( Language.getEntry("pro.chars.steven.displayDef"), "neutral", 250, 140));
         addObject(new SceneDoorway(FunlandArcadeP.class, Language.getEntry("pro.arcade.doorway"), 0, 100,200, 500){ { centred = true;}});
 
         addObject(new DialogueDoor("test/bigDonutDoor", Language.getEntry("pro.big-donut.enter"), 634, 127,203, 160){ { centred = true;}});
-
 
         Flags.flags.setDouble("lapisTestArcadeLeave" , 2);
     }

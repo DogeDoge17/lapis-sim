@@ -46,8 +46,6 @@ public class Main extends ApplicationAdapter {
     public static OrthographicCamera camera = new OrthographicCamera();
     public static Viewport viewport = new FitViewport(SCREENWIDTH, SCREENHEIGHT, camera);
 
-
-
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -60,6 +58,11 @@ public class Main extends ApplicationAdapter {
         defaultShader = SpriteBatch.createDefaultShader();
         outlineShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/outline.frag").readString());
 
+        // for (Map.Entry<Character, LineChar> entry : foo.textureMap.entrySet()) {
+        //
+        //     System.out.println("Key: " + key + ", Value: " + value);
+        // }
+
         //textBorderShader = new ShaderProgram(defaultShader.getVertexShaderSource(), Gdx.files.internal("shaders/textBorder.frag").readString());
         Language.setLang(Languages.en);
         Save.loadRecentSave();
@@ -71,7 +74,6 @@ public class Main extends ApplicationAdapter {
         realRender();
         postRender();
     }
-
 
     public void update() {
         if((Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.ALT_RIGHT) || Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.ALT_LEFT)) && Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)){
@@ -97,6 +99,7 @@ public class Main extends ApplicationAdapter {
         DialogueManager.drawDialogue(batch);
         batch.setColor(0,0,0,1);
         batch.draw(whitesSqr, mouseRec.x, mouseRec.y, mouseRec.width, mouseRec.height);
+        TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), "h", 10, 10, 16, Color.WHITE);
         //batch.draw(image, 140, 210, image.getWidth(), image.getHeight());
 
     }

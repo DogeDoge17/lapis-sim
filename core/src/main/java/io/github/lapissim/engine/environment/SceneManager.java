@@ -68,15 +68,13 @@ public class SceneManager {
         activeScene.start();
     }
 
-
     static int gameTimeZeroFrames = 0;
-
     public static void drawTransition(SpriteBatch batch){
 
-        if(transitioning){
-
-            if(Time.gameTime == 0){
+        if(transitioning) {
+            if(Time.gameTime == 0) {
                 gameTimeZeroFrames++;
+
                 if(gameTimeZeroFrames >= 60) {
                     transitioning = false;
                     loadNewScene(sceneQueue, false);
@@ -88,10 +86,9 @@ public class SceneManager {
                 }
             }
 
-            transitionA += dir *3* Time.gameTime;
+            transitionA += dir * 3 * Time.gameTime;
             System.out.println("TRANSA: " + transitionA + " GAMETIME: " +  Time.gameTime);
-            if(transitionA > 1)
-            {
+            if(transitionA > 1) {
                 dir = -1;
                 transitionA = 0.99f;
                 loadNewScene(sceneQueue, false);
