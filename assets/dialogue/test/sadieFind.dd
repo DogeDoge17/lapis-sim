@@ -27,5 +27,5 @@ dia "sneaked in with his aura..." steven neutral
 dia "haha sure steven" sadie neutral
 dia "we can go check the Big Donut for your aura man" sadie neutral
 dia "thanks Sadie!" steven happy
-flag findCarti 4
+max findCarti 4
 end

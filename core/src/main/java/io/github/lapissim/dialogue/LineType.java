@@ -3,6 +3,10 @@ package io.github.lapissim.dialogue;
 public enum LineType
 {
     /**
+     * Type anything in followed by a colon to create a label
+     */
+    LABEL,
+    /**
      *Takes in three inputs: Content, SpeakerID, expression
      */
     DIA,
@@ -16,10 +20,6 @@ public enum LineType
      * All Choices go before labels
      */
     CHOICE,
-    /**
-     * Type anything in followed by a colon to create a label
-     */
-    LABEL,
     /**
      * Takes in no arguments. Makes time scaling persist across transforms.
      */
@@ -76,6 +76,15 @@ public enum LineType
      * Takes in two arguments: Flag name, Flag Value. Sets the global flag to have the desired value.
      */
     FLAG,
+    /**
+     * Takes in two arguments: Flag name, Flag Value. Sets the global flag to have the desired value if it is smaller than the minimum.
+     */
+    MIN,
+    /**
+     * Takes in two arguments: Flag name, Flag Value. Sets the global flag to have the desired value if it is larger than the maximum.
+     * This is the reccomemded way to set flags that control the state of the story.
+     */
+    MAX,
     /**
      * Takes in two arguments: Flag name, value. Compares the flag and the inline value. Typically used with either JE or any other comparison jumps.
      */

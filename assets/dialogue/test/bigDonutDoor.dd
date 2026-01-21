@@ -11,5 +11,5 @@ dia "maybe she went on break to..." steven neutral
 dia "play in the arcade!" steven happy
 dia "let's go find her there" steven happy
 dia "you lead the way" lapis neutral
-flag findCarti 3
+max findCarti 3
 end

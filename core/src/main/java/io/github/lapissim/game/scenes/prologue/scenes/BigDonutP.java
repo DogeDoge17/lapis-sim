@@ -8,7 +8,9 @@ import io.github.lapissim.game.prefabs.SceneDoorway;
 import io.github.lapissim.game.prefabs.DialogueDoor;
 import io.github.lapissim.game.scenes.prologue.speakers.LapisP;
 import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
+import io.github.lapissim.game.scenes.prologue.speakers.SadieP;
 import io.github.lapissim.localization.Language;
+import io.github.lapissim.Main;
 
 public class BigDonutP extends Scene {
     public BigDonutP(SceneObject[] objs) {
@@ -23,7 +25,12 @@ public class BigDonutP extends Scene {
         lapis.dir = -1;
 
         addObject(lapis);
+
         addObject(new StevenP( Language.getEntry("pro.chars.steven.displayDef"), "neutral", 250, 140));
+        addObject(new SadieP("neutral", Main.SCREENWIDTH/2, 140) {{
+            this.setVisibility(Flags.flags.getDouble("findCarti") > 3);
+        }});
+
         addObject(new SceneDoorway(FunlandArcadeP.class, Language.getEntry("pro.arcade.doorway"), 0, 100,200, 500){ { centred = true;}});
 
         addObject(new DialogueDoor("test/bigDonutDoor", Language.getEntry("pro.big-donut.enter"), 634, 127,203, 160){ { centred = true;}});

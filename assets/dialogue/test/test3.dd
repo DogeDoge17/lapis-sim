@@ -20,6 +20,6 @@ lapisL:
   position "lapis" 200 109
   dir lapis 1
   dia "Thank you!" "steven" "happy"
-  FLAG "lapisTestArcadeLeave" 0
+  max "lapisTestArcadeLeave" 0
   dia "Anyway" "steven" neutral
   ret

@@ -15,7 +15,7 @@ public class LapisP extends Speaker {
     public void onClick()
     {
         double carti = Flags.flags.getDouble("findCarti");
-        switch (SceneManager.activeScene.name){
+        switch (SceneManager.activeScene.name) {
 
             case "Funland Arcade":
                 if(carti == 4)

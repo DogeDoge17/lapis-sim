@@ -214,6 +214,20 @@ public class DialogueManager
                     line.flag = lineArgs[1];
                     line.value = lineArgs[2];
                     break;
+                case "min":
+                    if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.FLAG;
+                    line.flag = lineArgs[1];
+                    line.value = lineArgs[2];
+                    break;
+                case "max":
+                    if(lineArgs.length < 2) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
+
+                    line.lineType = LineType.FLAG;
+                    line.flag = lineArgs[1];
+                    line.value = lineArgs[2];
+                    break;
                 case "name":
                     if(lineArgs.length < 3) { System.out.println("\033[0;31mInvalid argument amount in line: " + rawLines[i] + "\033[0m"); continue; }
 
@@ -368,6 +382,13 @@ public class DialogueManager
                 case FLAG:
                     Flags.flags.trySetFlag(line.flag, line.value);
                     break;
+                case MAX:
+                    Flags.flags.setDouble(line.flag, Math.max((double)Flags.convertString(line.value), (double)Flags.flags.getDouble(line.flag)));
+                    break;
+                case MIN:
+                    Flags.flags.setDouble(line.flag, Math.min((double)Flags.convertString(line.value), (double)Flags.flags.getDouble(line.flag)));
+                    break;
+                // TODO: change to use compare and multiple flags
                 case CMP:
                     comparisonLine = line;
                     break;
@@ -492,8 +513,7 @@ public class DialogueManager
 
         if(auto){
             autoDots -= Time.gameTime;
-            if(autoDots <= 0)
-            {
+            if(autoDots <= 0) {
                 autoDotsCount++;
                 autoDots = .9f;
             }
@@ -504,7 +524,7 @@ public class DialogueManager
             Line l = getLine();
             if(l != null)
                 if(l.contents != null)
-                    if (displayPtr >= l.contents.length()-1){
+                    if (displayPtr >= l.contents.length() - 1){
                         autoTimer -= Time.gameTime;
                         if(autoTimer <= 0){
                             autoTimer = autoInterval;
@@ -517,14 +537,14 @@ public class DialogueManager
         Line line = getLine();
         if(line != null)
             if(line.lineType == LineType.DIA)
-                if(charPrintTimer <= 0 && displayPtr < line.contents.length()){
+                if(charPrintTimer <= 0 && displayPtr < line.contents.length()) {
                     charPrintTimer = printSpeed;
                     addChar(line);
                 }
         f1 = false;
     }
-    public static void drawDialogue(SpriteBatch batch)
-    {
+
+    public static void drawDialogue(SpriteBatch batch) {
         if(!visible)
             return;
 
@@ -537,8 +557,7 @@ public class DialogueManager
         if(line.lineType != LineType.DIA && line.lineType != LineType.CHOICE)
             return;
 
-        for (Speaker s : SceneManager.activeScene.getSpeakers())
-        {
+        for (Speaker s : SceneManager.activeScene.getSpeakers()) {
             s.speaking = false;
         }
 
@@ -556,15 +575,14 @@ public class DialogueManager
                 name = speaker.displayName;
             TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), name, 173,270, 24, Color.WHITE);
         }
-        else{
+        else {
             batch.draw(neNameplatePas,0,0);
         }
 
         if(displayBuilder == null) TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), line.contents, 100,190, 24, Color.WHITE);
         else TextRenderer.drawString(batch, Font.fontCache.get("Comic Sans MS"), displayBuilder.toString(), 100,190, 24, Color.WHITE);
 
-        if(auto)
-        {
+        if(auto) {
             StringBuilder dotBuilder = new StringBuilder(8);
             dotBuilder.append("auto");
             for(byte i = 0; i < autoDotsCount; i++){
@@ -576,7 +594,7 @@ public class DialogueManager
     }
 
     public static Line getLine(){
-        if(linePointer < lines.length-1 && linePointer >= 0)
+        if(linePointer < lines.length - 1 && linePointer >= 0)
             return lines[linePointer];
         else
             return null;
@@ -597,6 +615,7 @@ public class DialogueManager
 
         return argsList.toArray(new String[0]);
     }
+
     static class FilterEntry {
         public final String in;
         public final String out;

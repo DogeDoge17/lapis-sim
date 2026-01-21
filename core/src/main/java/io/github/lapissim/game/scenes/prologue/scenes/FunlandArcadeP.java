@@ -13,23 +13,21 @@ import io.github.lapissim.game.scenes.prologue.speakers.SadieP;
 import io.github.lapissim.game.scenes.prologue.speakers.StevenP;
 
 public class FunlandArcadeP extends Scene {
-
     Font sans;
 
     public FunlandArcadeP(SceneObject[] objs) {
         super("Funland Arcade", "beach-city/funland-arcade", objs);
     }
 
-    public FunlandArcadeP()
-    {
+    public FunlandArcadeP() {
         super("Funland Arcade", "beach-city/funland-arcade");
         addObject(new LapisP("Lapis", "neutral", 200, 109));
-        addObject(new StevenP( "Steven", "happy", Speaker.RightAnchor-100, 140));
+        addObject(new StevenP( "Steven", "happy", Speaker.RightAnchor - 100, 140));
         addObject(new Speaker("Carti", "Playboi Carti", "neutral", Main.SCREENWIDTH/2, 140));
         addObject(new SadieP("neutral", Main.SCREENWIDTH/2, 140) {{
             this.setVisibility(Flags.flags.getDouble("findCarti") > 3);
         }});
-        addObject(new SceneDoorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor+68, 100,140, 500){ { centred = true; }});
+        addObject(new SceneDoorway(BigDonutP.class,"Big Donut", Speaker.RightAnchor + 68, 100,140, 500){ { centred = true; }});
 
         //TODO: test dialogue starting on scene entrance and flags
         if(Flags.flags.getDouble("findCarti") >= 3)
@@ -38,7 +36,7 @@ public class FunlandArcadeP extends Scene {
 
 
     @Override
-    public void start(){
+    public void start() {
         getObject("steven").dir = -1;
         getSpeaker("Carti").setVisibility(false);
     }

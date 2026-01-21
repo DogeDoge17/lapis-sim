@@ -18,11 +18,11 @@ public class Time {
     static public float m_refreshTime = 0.5f;
 
 
-    public static void setGTMulitplier(float multiplier){
+    public static void setGTMulitplier(float multiplier) {
         gameTimeMulitpler = multiplier;
     }
 
-    public static void update(){
+    public static void update() {
 
         long time = System.currentTimeMillis();
         //deltaTime = (time - last_time) * 100000000000L;
@@ -30,20 +30,16 @@ public class Time {
         gameTime = deltaTime * gameTimeMulitpler;
         last_time = time;
 
-        if( m_timeCounter < m_refreshTime )
-        {
+        if( m_timeCounter < m_refreshTime ) {
             m_timeCounter += Time.deltaTime;
             m_frameCounter++;
         }
-        else
-        {
-            //This code will break if you set your m_refreshTime to 0, which makes no sense.
-            fps = (float)m_frameCounter/m_timeCounter;
+        else {
+            fps = (float)m_frameCounter / m_timeCounter;
             m_frameCounter = 0;
             m_timeCounter = 0.0f;
         }
 
-        //deltaTime = Gdx.graphics.getDeltaTime();
         if(frames == Long.MAX_VALUE)  frames = 0;
         frames++;
     }

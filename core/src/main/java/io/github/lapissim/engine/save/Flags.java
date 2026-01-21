@@ -82,10 +82,6 @@ public class Flags {
             return;
         }
 
-        else if ( value instanceof Float) {
-            numberFlags.put(flag, ((Float) value).doubleValue());
-        }
-
         System.out.println("Type " + value.getClass().getName() + " could not be entered in as a flag. Please only input strings numbers or booleans.");
     }
 
